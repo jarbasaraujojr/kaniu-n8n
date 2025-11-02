@@ -245,10 +245,30 @@ const KaniuState = {
     // ===== PERSISTÊNCIA =====
 
     /**
+     * Verifica se localStorage está disponível
+     * @returns {boolean}
+     */
+    isLocalStorageAvailable() {
+        try {
+            const test = '__kaniu_test__';
+            localStorage.setItem(test, test);
+            localStorage.removeItem(test);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    },
+
+    /**
      * Salva estado no localStorage
      * @param {string} key - Chave de armazenamento
      */
     saveToLocalStorage(key = 'kaniu_state') {
+        if (!this.isLocalStorageAvailable()) {
+            console.warn('⚠️ localStorage não disponível (sandbox). Estado não será persistido.');
+            return false;
+        }
+
         try {
             const stateToSave = {
                 user: this.state.user,
@@ -257,8 +277,10 @@ const KaniuState = {
             };
 
             localStorage.setItem(key, JSON.stringify(stateToSave));
+            return true;
         } catch (error) {
-            console.error('Erro ao salvar estado:', error);
+            console.error('❌ Erro ao salvar estado:', error);
+            return false;
         }
     },
 
@@ -267,16 +289,23 @@ const KaniuState = {
      * @param {string} key - Chave de armazenamento
      */
     loadFromLocalStorage(key = 'kaniu_state') {
+        if (!this.isLocalStorageAvailable()) {
+            console.warn('⚠️ localStorage não disponível. Usando apenas memória.');
+            return false;
+        }
+
         try {
             const saved = localStorage.getItem(key);
 
             if (saved) {
                 const parsed = JSON.parse(saved);
                 this.update(parsed);
+                return true;
             }
         } catch (error) {
-            console.error('Erro ao carregar estado:', error);
+            console.error('❌ Erro ao carregar estado:', error);
         }
+        return false;
     },
 
     /**
