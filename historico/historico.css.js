@@ -14,7 +14,7 @@ const css = `
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 1.25rem;
+  margin-top: 0.5rem;
 }
 
 /* ===== CONTEÚDO DO HISTÓRICO ===== */
@@ -22,6 +22,7 @@ const css = `
   flex: 1;
   overflow: hidden;
   min-height: 0;
+  margin-top: 1rem;
 }
 
 .table-card {
@@ -122,14 +123,12 @@ const css = `
 }
 
 .tipo-col {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
   white-space: nowrap;
 }
 
 .tipo-col i {
   color: var(--primary-color, #5A5D7F);
+  margin-right: 0.5rem;
 }
 
 .desc-col {
