@@ -92,11 +92,25 @@ const KaniuAPI = {
                 body: filters
             });
 
-            // Normaliza resposta (pode vir em formatos diferentes)
+            // Normaliza resposta (pode vir em diferentes formatos)
+
+            // Formato 1: {eventos: Array} ← ESTRUTURA REAL DA API
+            if (data?.eventos && Array.isArray(data.eventos)) {
+                return data.eventos;
+            }
+
+            // Formato 2: [{data: Array}]
             if (Array.isArray(data) && data[0]?.data) {
                 return data[0].data;
             }
-            return Array.isArray(data) ? data : [];
+
+            // Formato 3: Array direto
+            if (Array.isArray(data)) {
+                return data;
+            }
+
+            // Fallback: retorna array vazio
+            return [];
 
         } catch (error) {
             console.error('Erro ao buscar eventos:', error);

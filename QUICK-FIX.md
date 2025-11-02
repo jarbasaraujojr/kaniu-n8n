@@ -55,9 +55,42 @@ loadFromLocalStorage(key = 'kaniu_state') {
 
 ---
 
-## 🔧 Fix Necessário: 0 Eventos
+## ✅ Fix Aplicado: 0 Eventos (RESOLVIDO)
 
-### Diagnóstico Rápido
+### Problema Identificado
+
+A API retorna os eventos no formato:
+```javascript
+{eventos: Array(12)}
+```
+
+Mas o código esperava:
+```javascript
+[{data: Array(12)}]
+```
+
+### Solução Aplicada
+
+Atualizado `js-modules/api.js` método `getEventos()` para normalizar corretamente:
+
+```javascript
+// Formato 1: {eventos: Array} ← ESTRUTURA REAL DA API
+if (data?.eventos && Array.isArray(data.eventos)) {
+    return data.eventos;
+}
+
+// Formato 2: [{data: Array}]
+if (Array.isArray(data) && data[0]?.data) {
+    return data[0].data;
+}
+
+// Formato 3: Array direto
+if (Array.isArray(data)) {
+    return data;
+}
+```
+
+### Teste de Verificação
 
 Execute no console do browser:
 
