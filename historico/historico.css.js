@@ -349,37 +349,39 @@ const css = `
   }
 }
 
-/* ===== MODO ESCURO ===== */
+/* ===== MODO ESCURO (DESABILITADO - forçar modo claro) ===== */
+/*
 @media (prefers-color-scheme: dark) {
   .table-card,
   .filters-bar {
     background: var(--card-background, #1E293B);
     border-color: var(--border-color, #334155);
   }
-  
+
   .table-header {
     background: var(--background-soft, #0F172A);
     border-bottom-color: var(--border-color, #334155);
   }
-  
+
   .eventos-table thead {
     background: var(--background-soft, #0F172A);
   }
-  
+
   .eventos-table th {
     color: var(--text-light, #94A3B8);
     border-bottom-color: var(--border-color, #334155);
   }
-  
+
   .eventos-table td {
     border-bottom-color: var(--border-color, #334155);
     color: var(--text-dark, #CBD5E1);
   }
-  
+
   .eventos-table tbody tr:hover {
     background: var(--background-light, #334155);
   }
 }
+*/
 </style>
 `;
 

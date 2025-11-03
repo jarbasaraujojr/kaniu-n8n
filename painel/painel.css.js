@@ -257,33 +257,35 @@ body.painel-page main {
   min-height: 0;
 }
 
-/* ===== MODO ESCURO (se aplicado) ===== */
+/* ===== MODO ESCURO (DESABILITADO - forçar modo claro) ===== */
+/*
 @media (prefers-color-scheme: dark) {
   .dashboard-card {
     background: var(--card-background, #1E293B);
     border-color: var(--border-color, #334155);
   }
-  
+
   .dashboard-card header {
     background: var(--background-soft, #0F172A);
     border-bottom-color: var(--border-color, #334155);
     color: var(--text-dark, #E2E8F0);
   }
-  
+
   .dashboard-card th {
     background: var(--background-soft, #0F172A);
     color: var(--text-light, #94A3B8);
   }
-  
+
   .dashboard-card td {
     border-bottom-color: var(--border-color, #334155);
     color: var(--text-dark, #CBD5E1);
   }
-  
+
   .dashboard-card tbody tr:hover {
     background: var(--background-light, #334155);
   }
 }
+*/
 </style>
 `;
 
