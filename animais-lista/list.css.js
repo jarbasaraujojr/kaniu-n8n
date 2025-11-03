@@ -1412,6 +1412,44 @@ th.table-col-long, td.table-col-long {
   line-height: 1.5;
   background: transparent; /* mantém fundo neutro */
 }
+
+/* ===== MODO ESCURO ===== */
+@media (prefers-color-scheme: dark) {
+  .card,
+  .table-card {
+    background: var(--card-background);
+    border-color: var(--border-color);
+  }
+
+  .card header,
+  .table-card header {
+    background: var(--background-soft);
+    border-bottom-color: var(--border-color);
+  }
+
+  .tab-table thead,
+  table thead {
+    background: var(--background-soft);
+  }
+
+  .tab-table thead th,
+  table th {
+    background: var(--background-soft);
+    color: var(--text-light);
+    border-bottom-color: var(--border-color);
+  }
+
+  .tab-table td,
+  table td {
+    border-bottom-color: var(--border-color);
+    color: var(--text-dark);
+  }
+
+  tbody tr:hover,
+  .tab-table tbody tr:hover {
+    background: var(--background-light);
+  }
+}
 </style>
 `;
 return { style };

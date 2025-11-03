@@ -103,8 +103,7 @@ const css = `
     }
 }
 
-/* ===== MODO ESCURO (DESABILITADO - forçar modo claro) ===== */
-/*
+/* ===== MODO ESCURO (ativo - detecta tema do OS/navegador) ===== */
 @media (prefers-color-scheme: dark) {
     :root {
         --background-light: #0F172A;
@@ -116,7 +115,6 @@ const css = `
         --border-color: #334155;
     }
 }
-*/
 </style>
 `;
 

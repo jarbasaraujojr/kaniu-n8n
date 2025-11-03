@@ -1475,7 +1475,47 @@ th.table-col-long, td.table-col-long {
   top: 0 !important;
 }
 
+/* ===== MODO ESCURO ===== */
+@media (prefers-color-scheme: dark) {
+  .card,
+  .table-card {
+    background: var(--card-background);
+    border-color: var(--border-color);
+  }
 
+  .card header {
+    background: var(--background-soft);
+    border-bottom-color: var(--border-color);
+  }
+
+  .tab-table thead,
+  table thead {
+    background: var(--background-soft);
+  }
+
+  .tab-table thead th,
+  table th {
+    background: var(--background-soft);
+    color: var(--text-light);
+    border-bottom-color: var(--border-color);
+  }
+
+  .tab-table td,
+  table td {
+    border-bottom-color: var(--border-color);
+    color: var(--text-dark);
+  }
+
+  tbody tr:hover,
+  .tab-table tbody tr:hover {
+    background: var(--background-light);
+  }
+
+  .info-field {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color);
+  }
+}
 
 </style>
 `;
