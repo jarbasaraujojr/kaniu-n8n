@@ -120,7 +120,7 @@ const css = `
 }
 
 .eventos-table tbody tr:hover {
-  background: rgba(255, 102, 0, 0.05);
+  background: rgba(90, 93, 127, 0.03);
 }
 
 /* Colunas específicas */
