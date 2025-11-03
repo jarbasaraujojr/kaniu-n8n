@@ -1,9 +1,20 @@
 // Gera o html principal da página
 
+// ===== IMPORTA MÓDULOS CSS GLOBAIS =====
+const cssVariables = $('CSS Variables').first().json.css;
+const cssFontsBase = $('CSS Fonts Base').first().json.css;
+const cssLayout = $('CSS Layout').first().json.css;
+const cssComponents = $('CSS Components').first().json.css;
+const cssSidebar = $('CSS Sidebar').first().json.css;
+const cssUtilities = $('CSS Utilities').first().json.css;
+
+// ===== IMPORTA CSS DA PÁGINA =====
+const painel_css = $('Painel Css').first().json.css;
+
+// ===== IMPORTA COMPONENTES =====
 const sidebar_html = $('Sidebar Html').first().json.html;
 const sidebar_script = $('Sidebar Script').first().json.script;
 const painel_html = $('Painel Html').first().json.html;
-const painel_css = $('Painel Css').first().json.css;
 
 const html = `
 <!DOCTYPE html>
@@ -14,12 +25,19 @@ const html = `
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaniu :: NOME_CANIL</title>
     
-    <!------------------------------------- Carregar fontes locais ------------------------------------->
+    <!-- ===== FONT AWESOME ===== -->
     <link href="https://viralatinhaz.uzd6db.easypanel.host/assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
     <link href="https://viralatinhaz.uzd6db.easypanel.host/assets/fontawesome/css/solid.css" rel="stylesheet" />
-    <link href="https://viralatinhaz.uzd6db.easypanel.host/assets/css/details.css" rel="stylesheet" />
-    
-    <!------------------------------------- CSS do Painel ------------------------------------->
+
+    <!-- ===== CSS GLOBAL (MODULAR) ===== -->
+    ${cssVariables}
+    ${cssFontsBase}
+    ${cssLayout}
+    ${cssComponents}
+    ${cssSidebar}
+    ${cssUtilities}
+
+    <!-- ===== CSS DA PÁGINA ===== -->
     ${painel_css}
 </head>
 

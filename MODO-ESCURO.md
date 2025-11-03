@@ -341,11 +341,20 @@ body.dark-mode {
 
 ## 📝 Histórico de Mudanças
 
-### Novo Commit (PENDENTE) - Corrigir modo escuro em todas as páginas
-- ✅ **CORRIGIDO** animais-lista/list.css.js - Adicionado `:root` com variáveis dark mode
-- ✅ **CORRIGIDO** animal-detalhes/details.css.js - Adicionado `:root` com variáveis dark mode
-- ✅ **CORRIGIDO** painel/painel.css.js - Adicionado `:root` completo + variáveis dark mode
-- 🔍 **Problema identificado:** Commit anterior só tinha estilos de componentes, faltavam as variáveis
+### Novo Commit (PENDENTE) - Refatorar CSS: centralizar variáveis no css-global
+- ♻️ **REFATORADO** Todas as páginas agora importam css-global (seguindo padrão do histórico)
+- ✅ **REMOVIDO** Variáveis `:root` duplicadas de list.css.js, details.css.js e painel.css.js
+- ✅ **ADICIONADO** Importação de módulos CSS globais em todas as páginas HTML:
+  - `painel/index.painel.html.js` - Agora importa css-global
+  - `animais-lista/list.html.js` - Agora importa css-global
+  - `animal-detalhes/details.html.js` - Agora importa css-global
+- ✅ **REMOVIDO** Link externo para `details.css` do painel (linha 20 de index.painel.html.js)
+- 🎯 **BENEFÍCIO:** Modo escuro agora funciona em TODAS as páginas via css-global/01-variables.css.js
+
+### Commit `cdbbb2c` - Adicionar variáveis CSS :root (ABORDAGEM ERRADA - corrigida acima)
+- ❌ **ERRO DE DESIGN:** Duplicou variáveis `:root` em cada arquivo CSS
+- ⚠️ **Problema:** Violação do princípio DRY (Don't Repeat Yourself)
+- ✅ **CORRIGIDO** no commit acima através de refatoração para uso do css-global
 
 ### Commit `b9b5120` - Reativar e aplicar modo escuro (INCOMPLETO)
 - ⚠️ Reativado modo escuro em css-global/01-variables.css.js (histórico funcionou)

@@ -22,7 +22,15 @@ const sidebar_script = $('Sidebar Script').first().json.script;
 const app_url = $('Vars').first().json.url.split('webhook/')[1];
 const img_logo = $('Constants').item.json.img_logo;
 
-// Código para obter o arquivo de estilo
+// ===== IMPORTA MÓDULOS CSS GLOBAIS =====
+const cssVariables = $('CSS Variables').first().json.css;
+const cssFontsBase = $('CSS Fonts Base').first().json.css;
+const cssLayout = $('CSS Layout').first().json.css;
+const cssComponents = $('CSS Components').first().json.css;
+const cssSidebar = $('CSS Sidebar').first().json.css;
+const cssUtilities = $('CSS Utilities').first().json.css;
+
+// ===== IMPORTA CSS DA PÁGINA =====
 const estilo = $('Details Style').first().json;
 
 // Função para converter boolean para "Sim" ou "Não"
@@ -148,20 +156,29 @@ const html = `
 <!DOCTYPE html>
 <html lang="pt-br">
 
-${estilo.style}
-
-<!------------------------------------- Carregar script de gráficos locais ------------------------------------->
-<script src="https://viralatinhaz.uzd6db.easypanel.host/assets/js/chart.js"></script>
-<script src="https://viralatinhaz.uzd6db.easypanel.host/assets/js/chartjs-adapter-date-fns"></script>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaniu :: ${animal.nome}</title>
-    
-    <!------------------------------------- Carregar fontes locais ------------------------------------->
+
+    <!-- ===== FONT AWESOME ===== -->
     <link href="https://viralatinhaz.uzd6db.easypanel.host/assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
     <link href="https://viralatinhaz.uzd6db.easypanel.host/assets/fontawesome/css/solid.css" rel="stylesheet" />
+
+    <!-- ===== CHART.JS ===== -->
+    <script src="https://viralatinhaz.uzd6db.easypanel.host/assets/js/chart.js"></script>
+    <script src="https://viralatinhaz.uzd6db.easypanel.host/assets/js/chartjs-adapter-date-fns"></script>
+
+    <!-- ===== CSS GLOBAL (MODULAR) ===== -->
+    ${cssVariables}
+    ${cssFontsBase}
+    ${cssLayout}
+    ${cssComponents}
+    ${cssSidebar}
+    ${cssUtilities}
+
+    <!-- ===== CSS DA PÁGINA ===== -->
+    ${estilo.style}
 </head>
 
 <body>

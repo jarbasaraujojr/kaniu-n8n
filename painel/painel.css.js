@@ -6,42 +6,8 @@
 
 const css = `
 <style>
-/* ===== VARIÁVEIS CSS (ROOT) ===== */
-:root {
-    /* Cores Principais */
-    --primary-color: #5A5D7F;
-    --primary-background: #5A5D7FA0;
-    --background-light: #EEF2F9;
-    --background-soft: #F5F6FB;
-    --card-background: #FFFFFF;
-    --warning-color: #C62828;
-    --text-dark: #372D1F;
-    --text-light: #6B7280;
-    --text-faded: #A0A6B5;
-    --border-color: #E5E7F2;
-
-    /* Raios de Borda */
-    --radius-lg: 18px;
-    --radius-md: 12px;
-    --radius-sm: 6px;
-
-    /* Outros */
-    --primary-soft: #5A5D7F10;
-    --primary-strong: #5A5D7FAA;
-}
-
-/* ===== MODO ESCURO (detecta tema do OS/navegador) ===== */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background-light: #0F172A;
-        --background-soft: #1E293B;
-        --card-background: #1E293B;
-        --text-dark: #E2E8F0;
-        --text-light: #94A3B8;
-        --text-faded: #64748B;
-        --border-color: #334155;
-    }
-}
+/* ===== ESTILOS ESPECÍFICOS DO PAINEL ===== */
+/* Variáveis CSS vêm do css-global/01-variables.css.js */
 
 /* ===== SOBREPOSIÇÕES ESPECÍFICAS DO PAINEL ===== */
 /* Garante que o main do painel tenha comportamento correto */
