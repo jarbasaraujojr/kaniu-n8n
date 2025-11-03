@@ -253,8 +253,8 @@ button, input, select, textarea {
     color: var(--text-light);
 }
 .status-icon-row .img-button-wrapper:hover {
-    border-color: rgba(255, 102, 0, 0.35);
-    box-shadow: 0 8px 18px rgba(255, 102, 0, 0.12);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 18px rgba(90, 93, 127, 0.12);
 }
 .status-icon-row .img-button-wrapper i { color: inherit; }
 
@@ -372,7 +372,7 @@ tbody tr {
     border-bottom: 1px solid var(--border-color);
     transition: background 120ms ease;
 }
-tbody tr:hover { background: rgba(255, 102, 0, 0.05); }
+tbody tr:hover { background: rgba(90, 93, 127, 0.03); }
 
 .table-col-long { min-width: 220px; }
 
