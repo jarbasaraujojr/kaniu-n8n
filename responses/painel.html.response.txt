@@ -1,0 +1,458 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaniu :: NOME_CANIL</title>
+    
+    <!------------------------------------- Carregar fontes locais ------------------------------------->
+    <link href="https://viralatinhaz.uzd6db.easypanel.host/assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="https://viralatinhaz.uzd6db.easypanel.host/assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <link href="https://viralatinhaz.uzd6db.easypanel.host/assets/css/details.css" rel="stylesheet" />
+    
+</head>
+
+<body>
+  <div class="app-shell">
+  
+    <!------------------------------------- Carregar sidebar  ------------------------------------->
+    
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <button id="sidebar-toggle" class="sidebar-toggle">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <img src="https://viralatinhaz.uzd6db.easypanel.host/assets/kaniu-logo-blue.png" alt="Kaniu" class="sidebar-logo" />
+      </div>
+
+      <nav class="sidebar-menu">
+        <button class="sidebar-item active" data-target="painel">
+          <i class="fa-solid fa-chart-pie"></i><span>Painel</span>
+        </button>
+        <button class="sidebar-item" data-target="animais">
+          <i class="fa-solid fa-paw"></i><span>Animais</span>
+        </button>
+        <button class="sidebar-item" data-target="historico">
+          <i class="fa-solid fa-clock-rotate-left"></i><span>Histórico</span>
+        </button>
+        <button class="sidebar-item" data-target="avaliacoes">
+          <i class="fa-solid fa-stethoscope"></i><span>Avaliações</span>
+        </button>
+        <button class="sidebar-item" data-target="tratamentos">
+          <i class="fa-solid fa-prescription-bottle-medical"></i><span>Tratamentos</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="sidebar-item" id="toggle-theme">
+          <i class="fa-solid fa-circle-half-stroke"></i><span>Tema</span>
+        </button>
+        <button class="sidebar-item">
+          <i class="fa-solid fa-warehouse"></i><span>Canil</span>
+        </button>
+        <button class="sidebar-item">
+          <i class="fa-solid fa-user"></i><span>Perfil</span>
+        </button>
+      </div>
+    </aside>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.sidebar-item[data-target]');
+        const currentPage = window.location.pathname.split('/').pop();
+  
+        // Aplica destaque ao botão da página atual
+        buttons.forEach(btn => {
+          const target = btn.getAttribute('data-target');
+          if (target === currentPage) {
+            btn.classList.add('active');
+          }
+  
+          // Redireciona diretamente ao clicar
+          btn.addEventListener('click', () => {
+            end_url = "https://karah-n8n.uzd6db.easypanel.host/webhook/kaniu-admin-dev-viralatinhaz?pagina="+target;
+            console.log('target-->',target);
+            window.location.href = end_url;
+          });
+        });
+      });
+  </script>
+
+
+    <!------------------------------------- Conteúdo principal da página ------------------------------------->
+    <div class="main-with-sidebar">
+        <main>
+            <div class="content-grid">
+              
+<style>
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: var(--background-light);
+    color: var(--text-dark);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* container principal */
+  main {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+    box-sizing: border-box;
+    min-height: 600px;              /* altura mín da página */
+    overflow: hidden;               /* quem vai rolar é o grid/card, não o main */
+    min-height: 0;                  /* 🔹 necessário p/ filhos poderem encolher */
+max-width: 100%;
+    margin: 0;
+  }
+
+  /* grid dos cards */
+  .dashboard-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 1rem;
+    min-height: 0;                  /* 🔹 permite que os cards não forcem o grid a crescer */
+  }
+
+  .dashboard-card {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+    min-height: 0;                  /* 🔹 importantíssimo p/ o scroll interno funcionar */
+    overflow: hidden;
+  }
+
+  .dashboard-card header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--background-soft);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    flex-shrink: 0;                 /* 🔹 header nunca encolhe */
+  }
+
+  .dashboard-card header i {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+  }
+
+  .table-wrapper {
+    flex: 1;
+    min-height: 0;                  /* 🔹 permite o overflow acontecer aqui */
+    overflow-y: auto;               /* 🔹 agora a rolagem fica aqui mesmo */
+    overflow-x: hidden;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    white-space: normal;            /* 🔹 evita barra horizontal à toa */
+    word-wrap: break-word;
+  }
+
+  th {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: var(--text-light);
+    border-bottom: 1px solid var(--border-color);
+    letter-spacing: 0.05em;
+    background: var(--background-soft);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  td {
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  tbody tr:hover {
+    background-color: var(--background-soft);
+  }
+
+  .days-red { color: #C62828; font-weight: 600; }
+  .highlight-loss { color: #e74c3c; font-weight: 600; }
+  .highlight-gain { color: #27ae60; font-weight: 600; }
+
+  .empty-message {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    padding: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+  <main>
+    <section class="dashboard-grid">
+      <!-- Avaliações antigas -->
+      <div class="dashboard-card">
+        <header><i class="fa-solid fa-stethoscope"></i> Avaliações antigas</header>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Animal</th><th>Data</th><th>Dias</th></tr></thead>
+            <tbody id="avaliacoes-antigas-body">
+              <tr><td colspan="3" class="empty-message">Carregando...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Avaliações nota baixa -->
+      <div class="dashboard-card">
+        <header><i class="fa-solid fa-heart-circle-xmark"></i> Avaliações com nota baixa</header>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Animal</th><th>Nota</th><th>Condições</th></tr></thead>
+            <tbody id="avaliacoes-nota-baixa-body">
+              <tr><td colspan="3" class="empty-message">Carregando...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Score corporal baixo -->
+      <div class="dashboard-card">
+        <header><i class="fa-solid fa-dumbbell"></i> Score corporal baixo</header>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Animal</th><th>Score</th></tr></thead>
+            <tbody id="score-baixo-body">
+              <tr><td colspan="2" class="empty-message">Carregando...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Medicações -->
+      <div class="dashboard-card">
+        <header><i class="fa-solid fa-syringe"></i> Medicações em andamento</header>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Animal</th><th>Qtd</th></tr></thead>
+            <tbody id="medicacoes-body">
+              <tr><td colspan="2" class="empty-message">Carregando...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pesagens antigas -->
+      <div class="dashboard-card">
+        <header><i class="fa-solid fa-weight-scale"></i> Pesagens antigas</header>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Animal</th><th>Data</th><th>Dias</th></tr></thead>
+            <tbody id="pesagens-antigas-body">
+              <tr><td colspan="3" class="empty-message">Carregando...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Perda de peso -->
+      <div class="dashboard-card">
+        <header><i class="fa-solid fa-chart-line"></i> Perda de peso</header>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Animal</th><th>Peso</th><th>Variação</th></tr></thead>
+            <tbody id="perda-peso-body">
+              <tr><td colspan="3" class="empty-message">Carregando...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<script>
+const CANIL_ID = 1;
+const ENDPOINT = "https://karah-n8n.uzd6db.easypanel.host/webhook/kaniu-pack-panel";
+
+async function carregarPainel() {
+  try {
+    const resp = await fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ canil_id: CANIL_ID })
+    });
+
+    let data = await resp.json();
+    // pode vir como [ { ... } ]
+    if (Array.isArray(data)) data = data[0] || {};
+    if (!data || typeof data !== "object") data = {};
+
+    // mapeamento seguro de listas
+    const getList = (key) => (Array.isArray(data[key]) ? data[key] : []);
+
+    // 1) Avaliações antigas
+    renderTabela(
+      "avaliacoes-antigas-body",
+      getList("avaliacoes_antigas"),
+      (item) => {
+        const dias =
+          item.dias_decorridos ??
+          item.dias_passados ??
+          item.dias_transcorridos ??
+          item.prazo_dias ??
+          "-";
+        const dataAvaliacao = item.data
+          ? new Date(item.data).toLocaleDateString("pt-BR")
+          : "-";
+          const animal_nome = item.animal_nome || '-'; 
+          const number_class = Number(dias) > 60 ? "days-red" : '';
+        return '<tr><td>' + animal_nome + '</td><td>' + dataAvaliacao + '</td><td class="' + number_class+ '">' + dias + 'dias</td></tr>';
+      }
+    );
+
+    // 2) Avaliações com nota baixa (às vezes vem vazio)
+    renderTabela(
+      "avaliacoes-nota-baixa-body",
+      getList("avaliacoes_nota_baixa"),
+      (item) => {
+        const nota =
+          item.nota_percentual != null
+            ? item.nota_percentual.toFixed(1) + "%"
+            : item.nota != null
+              ? (item.nota * 100).toFixed(1) + "%"
+              : "-";
+        const cond =
+          item.condicoes_identificadas ||
+          (Array.isArray(item.condicoes) && item.condicoes.length
+            ? item.condicoes.join(", ")
+            : "-");
+        const numero_classe = (item.nota_percentual || 100) < 95 ? "days-red" : "";
+        return '<tr><td>' + item.animal_nome || "-" + '</td><td class="' + numero_classe + '">' + nota + '</td><td>' + cond + '</td></tr>';
+      }
+    );
+
+    // 3) Score corporal baixo
+    renderTabela(
+      "score-baixo-body",
+      getList("score_baixo"),
+      (item) => '<tr><td>' + (item.animal_nome || '-') + '</td><td>' + (item.score_corporal ?? item.score ?? '-') +'</td></tr>'
+    );
+
+    // 4) Medicações
+    renderTabela(
+      "medicacoes-body",
+      getList("quantidade_medicacoes"),
+      (item) => '<tr><td>' + (item.animal_nome || item.nome || "-") + '</td><td>' + (item.quantidade_medicacoes ?? item.quantidade ?? "-") + '</td></tr>'
+    );
+
+    // 5) Pesagens antigas
+    renderTabela(
+      "pesagens-antigas-body",
+      getList("pesagens_antigas"),
+      (item) => {
+        const dataPesagem = item.data_pesagem
+          ? new Date(item.data_pesagem).toLocaleDateString("pt-BR")
+          : "-";
+        const dias =
+          item.dias_transcorridos ??
+          item.dias_passados ??
+          item.prazo_dias ??
+          "-";
+        return '<tr><td>' + (item.animal_nome || "-") + '</td><td>' + (dataPesagem) + '</td><td class="' + (Number(dias) > 180 || Number(dias) < -180 ? "days-red" : "") + '">' + (dias) + '</td></tr>';
+      }
+    );
+
+    // 6) Perda de peso
+    renderTabela(
+      "perda-peso-body",
+      getList("perda_peso"),
+      (item) => {
+        const dataPesagem = item.data_pesagem
+          ? new Date(item.data_pesagem).toLocaleDateString("pt-BR")
+          : "-";
+        const peso =
+          item.pesagem_valor != null
+            ? item.pesagem_valor.toFixed(1) + " kg"
+            : "-";
+        const variacao =
+          item.variacao_peso_percentual != null
+            ? item.variacao_peso_percentual.toFixed(1) + "%"
+            : "-";
+        return '<tr><td>' + (item.animal_nome || "-") + '</td><td>' + (dataPesagem) + '</td><td>' + (peso) + '</td><td class="' + (item.variacao_peso_percentual < 0 ? "highlight-loss" : "") + '">' + (variacao) + '</td></tr>';
+      }
+    );
+
+    // 🔹 qualquer tbody que ainda tenha "Carregando" e não foi preenchido acima:
+    limparRestantes();
+
+  } catch (err) {
+    console.error("Erro ao carregar painel:", err);
+    // se der erro, troca todos os 'carregando' por erro
+    document.querySelectorAll("tbody[id$='-body']").forEach((tb) => {
+      tb.innerHTML = '<tr><td colspan="10" class="empty-message">Erro ao carregar dados</td></tr>';
+    });
+  }
+}
+
+/**
+ * Preenche uma tabela específica.
+ * Se a lista vier vazia, mostra "Nenhum dado encontrado".
+ */
+function renderTabela(tbodyId, lista, templateFn) {
+  const tbody = document.getElementById(tbodyId);
+  if (!tbody) return;
+
+  if (!Array.isArray(lista) || lista.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="10" class="empty-message">Nenhum dado encontrado</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = lista.map(templateFn).join("");
+}
+
+/**
+ * Depois de preencher tudo, garante que nenhum "Carregando." fique na tela
+ */
+function limparRestantes() {
+  document.querySelectorAll("tbody[id$='-body']").forEach((tb) => {
+    if (!tb.innerHTML || tb.innerHTML.toLowerCase().includes("carregando")) {
+      tb.innerHTML = '<tr><td colspan="10" class="empty-message">Nenhum dado encontrado</td></tr>';
+    }
+  });
+}
+
+carregarPainel();
+</script>
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>
