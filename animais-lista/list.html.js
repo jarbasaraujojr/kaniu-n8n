@@ -343,4 +343,8 @@ const html = `
 `;
 
 // ---------- SAÍDA ----------
-return [{ json: { html } }];
+return [{ 
+    json: { 
+      html,
+      animals
+    } }];
