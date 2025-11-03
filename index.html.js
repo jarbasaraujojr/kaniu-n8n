@@ -64,32 +64,20 @@ const html = `
     ${cssSidebar}
     ${cssUtilities}
 
-    <!-- ===== CSS DA NAVBAR FIXA ===== -->
+    <!-- ===== CSS DA NAVBAR (ÁREA DE CONTEÚDO) ===== -->
     <style>
-    /* Navbar fixa no topo - mesma altura do header da sidebar */
+    /* Navbar no topo da área de conteúdo - mesma altura do header da sidebar */
     .top-navbar {
-        position: fixed;
+        position: sticky;
         top: 0;
-        left: 240px; /* Largura da sidebar */
-        right: 0;
         height: 57px; /* Altura do header da sidebar: 12px + 32px + 12px + 1px */
         background: var(--card-background);
         border-bottom: 1px solid var(--border-color);
         display: flex;
         align-items: center;
         padding: 0 1.5rem;
+        margin: 0 -1.5rem; /* Compensa o padding do main para ocupar largura total */
         z-index: 100;
-        transition: left 0.25s ease;
-    }
-
-    /* Quando sidebar está colapsada */
-    .sidebar.collapsed ~ .main-with-sidebar .top-navbar {
-        left: 72px;
-    }
-
-    /* Ajustar main para não ficar sob a navbar */
-    .main-with-sidebar {
-        padding-top: 57px; /* Altura da navbar */
     }
 
     /* Conteúdo da navbar */
@@ -98,6 +86,11 @@ const html = `
         display: flex;
         align-items: center;
         gap: 1rem;
+    }
+
+    /* Ajustar content-grid para ter espaçamento correto */
+    .content-grid {
+        padding-top: 0; /* Navbar já está no topo */
     }
     </style>
 
@@ -113,16 +106,15 @@ const html = `
 
     <!-- ===== CONTEÚDO PRINCIPAL ===== -->
     <div class="main-with-sidebar">
-
-        <!-- ===== NAVBAR FIXA NO TOPO ===== -->
-        <div class="top-navbar">
-            <div class="top-navbar-content">
-                ${navbar_html}
-            </div>
-        </div>
-
-        <!-- ===== CONTEÚDO DA PÁGINA ===== -->
         <main>
+            <!-- ===== NAVBAR NO TOPO DA ÁREA DE CONTEÚDO ===== -->
+            <div class="top-navbar">
+                <div class="top-navbar-content">
+                    ${navbar_html}
+                </div>
+            </div>
+
+            <!-- ===== CONTEÚDO DA PÁGINA ===== -->
             <div class="content-grid">
                 ${page_html}
             </div>
