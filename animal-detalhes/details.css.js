@@ -50,6 +50,19 @@ const style = `
     :root { --tab-toolbar-h: 52px; }
 }
 
+/* ===== MODO ESCURO (detecta tema do OS/navegador) ===== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-light: #0F172A;
+        --background-soft: #1E293B;
+        --card-background: #1E293B;
+        --text-dark: #E2E8F0;
+        --text-light: #94A3B8;
+        --text-faded: #64748B;
+        --border-color: #334155;
+    }
+}
+
 /* ==========================================================================
 // 3. ESTILOS GERAIS DE LAYOUT E ESTRUTURA
 // ========================================================================== */

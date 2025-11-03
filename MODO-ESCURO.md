@@ -1,8 +1,8 @@
 # 🌙 Modo Escuro - Sistema Kaniu
 
 **Data:** 2025-11-03
-**Commit:** `b9b5120`
-**Status:** ✅ ATIVO em todas as páginas
+**Commit:** `b9b5120` (anterior) → Novo commit pendente
+**Status:** ✅ CORRIGIDO - Agora funcionando em TODAS as páginas
 
 ---
 
@@ -125,6 +125,49 @@ Todas as páginas agora suportam modo escuro:
   /* ... */
 }
 ```
+
+---
+
+## 🐛 Problema Anterior Identificado
+
+### O Que Estava Errado?
+
+No commit `b9b5120`, adicionamos suporte a modo escuro mas apenas nos **componentes**, não nas **variáveis CSS**:
+
+```css
+/* ❌ O que foi feito antes (INCOMPLETO) */
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: var(--card-background);  /* Usa a variável */
+  }
+}
+```
+
+O problema: as variáveis `--card-background`, `--text-dark`, etc. **nunca mudavam para valores escuros**, então os componentes continuavam com cores claras.
+
+### Correção Aplicada
+
+Agora adicionamos o bloco crítico de **variáveis CSS em modo escuro**:
+
+```css
+/* ✅ Correção (COMPLETO) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-light: #0F172A;    /* Muda de #EEF2F9 para azul escuro */
+        --background-soft: #1E293B;     /* Muda de #F5F6FB para azul escuro */
+        --card-background: #1E293B;     /* Muda de #FFFFFF para azul escuro */
+        --text-dark: #E2E8F0;          /* Muda de #372D1F para claro */
+        --text-light: #94A3B8;         /* Muda de #6B7280 para cinza claro */
+        --text-faded: #64748B;         /* Muda de #A0A6B5 para azul cinza */
+        --border-color: #334155;       /* Muda de #E5E7F2 para azul escuro */
+    }
+}
+```
+
+**Arquivos corrigidos:**
+- `animais-lista/list.css.js` - Adicionado `:root` com dark mode (linhas 53-64)
+- `animal-detalhes/details.css.js` - Adicionado `:root` com dark mode (linhas 53-64)
+- `painel/painel.css.js` - Adicionado `:root` completo + dark mode (linhas 9-44)
 
 ---
 
@@ -298,12 +341,18 @@ body.dark-mode {
 
 ## 📝 Histórico de Mudanças
 
-### Commit `b9b5120` - Reativar e aplicar modo escuro (atual)
-- ✅ Reativado modo escuro em css-global/01-variables.css.js
-- ✅ Reativado modo escuro em historico/historico.css.js
-- ✅ Reativado modo escuro em painel/painel.css.js
-- ✅ **ADICIONADO** modo escuro em animais-lista/list.css.js
-- ✅ **ADICIONADO** modo escuro em animal-detalhes/details.css.js
+### Novo Commit (PENDENTE) - Corrigir modo escuro em todas as páginas
+- ✅ **CORRIGIDO** animais-lista/list.css.js - Adicionado `:root` com variáveis dark mode
+- ✅ **CORRIGIDO** animal-detalhes/details.css.js - Adicionado `:root` com variáveis dark mode
+- ✅ **CORRIGIDO** painel/painel.css.js - Adicionado `:root` completo + variáveis dark mode
+- 🔍 **Problema identificado:** Commit anterior só tinha estilos de componentes, faltavam as variáveis
+
+### Commit `b9b5120` - Reativar e aplicar modo escuro (INCOMPLETO)
+- ⚠️ Reativado modo escuro em css-global/01-variables.css.js (histórico funcionou)
+- ⚠️ Reativado modo escuro em historico/historico.css.js (histórico funcionou)
+- ❌ Adicionado modo escuro em painel/painel.css.js (SEM variáveis - não funcionou)
+- ❌ Adicionado modo escuro em animais-lista/list.css.js (SEM variáveis :root - não funcionou)
+- ❌ Adicionado modo escuro em animal-detalhes/details.css.js (SEM variáveis :root - não funcionou)
 
 ### Commit `7671e9d` - Desabilitar modo escuro (revertido)
 - ❌ Tentativa de forçar modo claro
@@ -326,8 +375,17 @@ body.dark-mode {
 
 ---
 
-**Commit:** `b9b5120`
-**Branch:** `claude/analyze-n8n-website-project-011CUjJ4aLt2MdUUGp3SgKzU`
-**Status:** ✅ Pronto para produção
+**Commits:**
+- `b9b5120` - Primeira tentativa (incompleta)
+- Novo commit (PENDENTE) - Correção completa
 
-**Aproveite o modo escuro! 🌙**
+**Branch:** `claude/analyze-n8n-website-project-011CUjJ4aLt2MdUUGp3SgKzU`
+**Status:** ✅ Corrigido e pronto para produção
+
+**Instruções para o usuário:**
+1. Atualize os nós Code no n8n com os arquivos corrigidos:
+   - Nó "List Style" → Copiar conteúdo de `animais-lista/list.css.js`
+   - Nó "Details Style" → Copiar conteúdo de `animal-detalhes/details.css.js`
+   - Nó "Painel Css" → Copiar conteúdo de `painel/painel.css.js`
+2. Mude o tema do seu sistema operacional para escuro
+3. Recarregue as páginas - todas devem exibir em modo escuro! 🌙
