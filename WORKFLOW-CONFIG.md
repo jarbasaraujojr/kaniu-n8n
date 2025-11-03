@@ -14,6 +14,8 @@
 | **`index.html.js`** | Template Central | HTML geral para TODAS as páginas | **"Index Geral"** (Code) |
 | **`painel/painel.page.js`** | Página Específica | Conteúdo do painel | **"Página: Painel"** (Code) |
 | **`animais-lista/list.page.js`** | Página Específica | Conteúdo da listagem | **"Página: Lista"** (Code) |
+| **`animal-detalhes/details.page.js`** | Página Específica | Conteúdo de detalhes do animal | **"Página: Detalhes"** (Code) |
+| **`historico/historico.page.js`** | Página Específica | Conteúdo do histórico | **"Página: Histórico"** (Code) |
 
 ### ⚠️ ARQUIVOS ANTIGOS (Remover do Workflow)
 
@@ -21,8 +23,8 @@
 |---------|--------|------|
 | ~~`painel/index.painel.html.js`~~ | ❌ OBSOLETO | Remover do workflow |
 | ~~`animais-lista/list.html.js`~~ | ❌ OBSOLETO | Remover do workflow |
-| ~~`animal-detalhes/details.html.js`~~ | ⏳ AGUARDANDO | Será substituído por `details.page.js` |
-| ~~`historico/index.historico.refactored.html.js`~~ | ⏳ AGUARDANDO | Será substituído por `historico.page.js` |
+| ~~`animal-detalhes/details.html.js`~~ | ❌ OBSOLETO | Substituído por `details.page.js` |
+| ~~`historico/index.historico.refactored.html.js`~~ | ❌ OBSOLETO | Substituído por `historico.page.js` |
 
 ### 🔄 ARQUIVOS AUXILIARES (Manter no Workflow)
 
@@ -231,24 +233,32 @@ Procure nós Code que:
 ## ✅ Checklist de Migração
 
 ### Painel
-- [ ] Criar nó `Página: Painel` com código de `/painel/painel.page.js`
-- [ ] Criar nó `Index Geral` com código de `/index.html.js`
+- [x] Criar nó `Página: Painel` com código de `/painel/painel.page.js`
+- [x] Criar nó `Index Geral` com código de `/index.html.js`
 - [ ] Conectar: Get Data → Página: Painel → Index Geral → Respond
 - [ ] Remover nó antigo `index.painel.html.js` (se existir)
 - [ ] Testar no navegador
 
 ### Listagem
-- [ ] Criar nó `Página: Lista` com código de `/animais-lista/list.page.js`
-- [ ] Reutilizar nó `Index Geral` (mesmo do painel)
+- [x] Criar nó `Página: Lista` com código de `/animais-lista/list.page.js`
+- [x] Reutilizar nó `Index Geral` (mesmo do painel)
 - [ ] Conectar: Get Animals → Página: Lista → Index Geral → Respond
 - [ ] Remover nó antigo `list.html.js` (se existir)
 - [ ] Testar no navegador
 
-### Pendentes
-- [ ] Criar `/animal-detalhes/details.page.js`
-- [ ] Criar `/historico/historico.page.js`
-- [ ] Migrar workflows de detalhes e histórico
-- [ ] Testar todas as páginas
+### Detalhes do Animal
+- [x] Criar nó `Página: Detalhes` com código de `/animal-detalhes/details.page.js`
+- [x] Reutilizar nó `Index Geral` (mesmo do painel)
+- [ ] Conectar: Get Animal → Página: Detalhes → Index Geral → Respond
+- [ ] Remover nó antigo `details.html.js` (se existir)
+- [ ] Testar no navegador
+
+### Histórico
+- [x] Criar nó `Página: Histórico` com código de `/historico/historico.page.js`
+- [x] Reutilizar nó `Index Geral` (mesmo do painel)
+- [ ] Conectar: Get Events → Página: Histórico → Index Geral → Respond
+- [ ] Remover nó antigo `index.historico.refactored.html.js` (se existir)
+- [ ] Testar no navegador
 
 ---
 
@@ -286,7 +296,9 @@ Procure nós Code que:
 - Commits: `7f39ea5` (criação) e próximo (ajustes navbar)
 
 **Próximos arquivos a criar:**
-1. `/animal-detalhes/details.page.js`
-2. `/historico/historico.page.js`
+~~1. `/animal-detalhes/details.page.js`~~ ✅ **CRIADO**
+~~2. `/historico/historico.page.js`~~ ✅ **CRIADO**
 
-Após criar esses, a migração estará completa! 🎉
+**Status:** ✅ Todos os arquivos da arquitetura unificada foram criados!
+
+Agora basta configurar os workflows no n8n! 🎉
