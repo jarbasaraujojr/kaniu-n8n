@@ -371,7 +371,7 @@ tbody tr {
     border-bottom: 1px solid var(--border-color);
     transition: background 120ms ease;
 }
-tbody tr:hover { background: rgba(90, 93, 127, 0.03); }
+tbody tr:hover { background: var(--background-soft); }
 
 .table-col-long { min-width: 220px; }
 
@@ -667,7 +667,7 @@ button:focus { outline: none !important; box-shadow: none !important; }
     color: var(--primary-color);
 }
 .tab-table td { color: var(--text-light); }
-.tab-table tbody tr:hover { background-color: rgba(90, 93, 127, 0.03); }
+.tab-table tbody tr:hover { background-color: var(--background-soft); }
 
 /* Coluna de Ações */
 .action-cell {
