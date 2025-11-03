@@ -10,7 +10,8 @@
 /**********************************************/
 
 // ===== RECEBE DADOS DE ENTRADA =====
-const animals = $input.first().json.animals;
+const inputData = $input.first().json;
+const animals = inputData.animals || [];
 const constants = $('Constants').item.json;
 const vars = $('Vars').first().json;
 
@@ -84,7 +85,24 @@ if (Array.isArray(animals) && animals.length > 0) {
     `;
   }).join('');
 } else {
-  cardsHtml = `<p class="no-results">Nenhum item encontrado.</p>`;
+  // Debug: Mostra informação sobre o que foi recebido
+  const debugInfo = Array.isArray(animals)
+    ? `Array vazio (0 animais)`
+    : `Dados inválidos (tipo: ${typeof animals})`;
+
+  cardsHtml = `
+    <div class="no-results-card" style="padding: 2rem; text-align: center; background: var(--card-background); border-radius: 8px; margin: 1rem 0;">
+      <i class="fa-solid fa-exclamation-triangle" style="font-size: 3rem; color: var(--warning-color); margin-bottom: 1rem;"></i>
+      <h3 style="margin-bottom: 0.5rem;">Nenhum animal encontrado</h3>
+      <p class="no-results" style="color: var(--text-muted);">
+        ${debugInfo}
+      </p>
+      <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">
+        Verifique se o nó anterior está passando os dados corretamente no formato:<br>
+        <code style="background: var(--background-alt); padding: 0.25rem 0.5rem; border-radius: 4px;">{ animals: [...] }</code>
+      </p>
+    </div>
+  `;
 }
 
 // ===== CONTEÚDO DA PÁGINA =====

@@ -8,21 +8,6 @@ const css = $('Painel Css').first().json.css;
 
 const html = `
   <div class="main-container">
-    <div class="tab-nav">
-        <button class="tab-btn active" data-tab="pendencias">
-            <i class="fa-solid fa-clock"></i>
-            Pendências
-        </button>
-        <button class="tab-btn" data-tab="peso">
-            <i class="fa-solid fa-weight-scale"></i>
-            Peso
-        </button>
-        <button class="tab-btn" data-tab="saude">
-            <i class="fa-solid fa-stethoscope"></i>
-            Saúde
-        </button>
-    </div>
-  </div>
     <section class="dashboard-grid">
       <!-- Avaliações antigas -->
       <div class="dashboard-card" data-category="pendencias">
@@ -102,6 +87,7 @@ const html = `
         </div>
       </div>
     </section>
+  </div>
 
 <script>
 const CANIL_ID = 1;
