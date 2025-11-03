@@ -4,14 +4,14 @@
 /*
 /* Este arquivo gera apenas o conteúdo específico:
 /* - navbar_html: Tabs de filtro (pendências, peso, saúde)
-/* - page_html: Dashboard com cards
+/* - page_html: Dashboard com cards  
 /* - page_css: Estilos do painel
-/* - page_script: JavaScript do painel
+/* - page_script: JavaScript do painel (vazio, pois já está no HTML)
 /**********************************************/
 
-// ===== IMPORTA CSS E SCRIPTS DA PÁGINA =====
-const painel_css = $('Painel Css').first().json.css;
+// ===== IMPORTA HTML E CSS DA PÁGINA =====
 const painel_html = $('Painel Html').first().json.html;
+const painel_css = $('Painel Css').first().json.css;
 
 // ===== NAVBAR (TABS DE FILTRO) =====
 const navbar_html = `
@@ -32,205 +32,15 @@ const navbar_html = `
 `;
 
 // ===== CONTEÚDO DA PÁGINA =====
+// NOTA: O painel_html já contém o JavaScript embutido
 const page_html = painel_html;
 
 // ===== CSS DA PÁGINA =====
 const page_css = painel_css;
 
 // ===== JAVASCRIPT DA PÁGINA =====
-const page_script = `
-<script>
-const CANIL_ID = 1;
-const ENDPOINT = "https://karah-n8n.uzd6db.easypanel.host/webhook/kaniu-pack-panel";
-
-// Inicializa a navegação por tabs
-function initTabNavigation() {
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const cards = document.querySelectorAll('.dashboard-card');
-
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const targetTab = button.getAttribute('data-tab');
-
-      // Atualiza botões ativos
-      tabButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-
-      // Mostra/oculta cards conforme categoria
-      cards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        if (category === targetTab) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // Mostra apenas cards da primeira aba (pendencias) ao carregar
-  cards.forEach(card => {
-    if (card.getAttribute('data-category') !== 'pendencias') {
-      card.style.display = 'none';
-    }
-  });
-}
-
-async function carregarPainel() {
-  try {
-    const resp = await fetch(ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ canil_id: CANIL_ID })
-    });
-
-    let data = await resp.json();
-    // pode vir como [ { ... } ]
-    if (Array.isArray(data)) data = data[0] || {};
-    if (!data || typeof data !== "object") data = {};
-
-    // mapeamento seguro de listas
-    const getList = (key) => (Array.isArray(data[key]) ? data[key] : []);
-
-    // 1) Avaliações antigas
-    renderTabela(
-      "avaliacoes-antigas-body",
-      getList("avaliacoes_antigas"),
-      (item) => {
-        const dias =
-          item.dias_decorridos ??
-          item.dias_passados ??
-          item.dias_transcorridos ??
-          item.prazo_dias ??
-          "-";
-        const dataAvaliacao = item.data
-          ? new Date(item.data).toLocaleDateString("pt-BR")
-          : "-";
-          const animal_nome = item.animal_nome || '-';
-          const number_class = Number(dias) > 60 ? "days-red" : '';
-        return '<tr><td>' + animal_nome + '</td><td>' + dataAvaliacao + '</td><td class="' + number_class+ '">' + dias + ' dias</td></tr>';
-      }
-    );
-
-    // 2) Avaliações com nota baixa
-    renderTabela(
-      "avaliacoes-nota-baixa-body",
-      getList("avaliacoes_nota_baixa"),
-      (item) => {
-        const nota =
-          item.nota_percentual != null
-            ? item.nota_percentual.toFixed(1) + "%"
-            : item.nota != null
-              ? (item.nota * 100).toFixed(1) + "%"
-              : "-";
-        const cond =
-          item.condicoes_identificadas ||
-          (Array.isArray(item.condicoes) && item.condicoes.length
-            ? item.condicoes.join(", ")
-            : "-");
-        const nome = item.animal_nome || "-";
-        const numero_classe = (item.nota_percentual || 100) < 95 ? "days-red" : "";
-        return '<tr><td>' + nome + '</td><td class="' + numero_classe + '">' + nota + '</td><td>' + cond + '</td></tr>';
-      }
-    );
-
-    // 3) Score corporal baixo
-    renderTabela(
-      "score-baixo-body",
-      getList("score_baixo"),
-      (item) => '<tr><td>' + (item.animal_nome || '-') + '</td><td>' + (item.score_corporal ?? item.score ?? '-') +'</td></tr>'
-    );
-
-    // 4) Medicações
-    renderTabela(
-      "medicacoes-body",
-      getList("quantidade_medicacoes"),
-      (item) => '<tr><td>' + (item.animal_nome || "-") + '</td><td>' + (item.quantidade_medicacoes ?? item.quantidade ?? "-") + '</td></tr>'
-    );
-
-    // 5) Pesagens antigas
-    renderTabela(
-      "pesagens-antigas-body",
-      getList("pesagens_antigas"),
-      (item) => {
-        const dataPesagem = item.data_pesagem
-          ? new Date(item.data_pesagem).toLocaleDateString("pt-BR")
-          : "-";
-        const dias =
-          item.dias_transcorridos ??
-          item.dias_passados ??
-          item.prazo_dias ??
-          "-";
-        return '<tr><td>' + (item.animal_nome || "-") + '</td><td>' + (dataPesagem) + '</td><td class="' + (Number(dias) > 180 || Number(dias) < -180 ? "days-red" : "") + '">' + (dias) + ' dias</td></tr>';
-      }
-    );
-
-    // 6) Perda de peso
-    renderTabela(
-      "perda-peso-body",
-      getList("perda_peso"),
-      (item) => {
-        const dataPesagem = item.data_pesagem
-          ? new Date(item.data_pesagem).toLocaleDateString("pt-BR")
-          : "-";
-        const peso =
-          item.pesagem_valor != null
-            ? item.pesagem_valor.toFixed(1) + " kg"
-            : "-";
-        const variacao =
-          item.variacao_peso_percentual != null
-            ? item.variacao_peso_percentual.toFixed(1) + "%"
-            : "-";
-        return '<tr><td>' + (item.animal_nome || "-") + '</td><td>' + peso + '</td><td class="' + (item.variacao_peso_percentual < 0 ? "highlight-loss" : "") + '">' + (variacao) + '</td></tr>';
-      }
-    );
-
-    // qualquer tbody que ainda tenha "Carregando" e não foi preenchido acima:
-    limparRestantes();
-
-  } catch (err) {
-    console.error("Erro ao carregar painel:", err);
-    // se der erro, troca todos os 'carregando' por erro
-    document.querySelectorAll("tbody[id$='-body']").forEach((tb) => {
-      tb.innerHTML = '<tr><td colspan="10" class="empty-message">Erro ao carregar dados</td></tr>';
-    });
-  }
-}
-
-/**
- * Preenche uma tabela específica.
- * Se a lista vier vazia, mostra "Nenhum dado encontrado".
- */
-function renderTabela(tbodyId, lista, templateFn) {
-  const tbody = document.getElementById(tbodyId);
-  if (!tbody) return;
-
-  if (!Array.isArray(lista) || lista.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="10" class="empty-message">Nenhum dado encontrado</td></tr>';
-    return;
-  }
-
-  tbody.innerHTML = lista.map(templateFn).join("");
-}
-
-/**
- * Depois de preencher tudo, garante que nenhum "Carregando." fique na tela
- */
-function limparRestantes() {
-  document.querySelectorAll("tbody[id$='-body']").forEach((tb) => {
-    if (!tb.innerHTML || tb.innerHTML.toLowerCase().includes("carregando")) {
-      tb.innerHTML = '<tr><td colspan="10" class="empty-message">Nenhum dado encontrado</td></tr>';
-    }
-  });
-}
-
-// Inicializa tudo quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', () => {
-  initTabNavigation();
-  carregarPainel();
-});
-</script>
-`;
+// NOTA: O script já está incluído no painel_html, então deixamos vazio
+const page_script = ``;
 
 // ===== RETORNA DADOS PARA O INDEX GERAL =====
 return [{
