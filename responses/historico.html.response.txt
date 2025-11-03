@@ -1,0 +1,3008 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaniu :: Histórico de Eventos</title>
+
+    <!-- ===== FAVICON ===== -->
+    <link rel="icon" type="image/png" href="https://viralatinhaz.uzd6db.easypanel.host/assets/kaniu-fav-icon-blue.png" />
+
+    <!-- ===== FONT AWESOME ===== -->
+    <link href="https://viralatinhaz.uzd6db.easypanel.host/assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="https://viralatinhaz.uzd6db.easypanel.host/assets/fontawesome/css/solid.css" rel="stylesheet" />
+
+    <!-- ===== CSS GLOBAL (MODULAR) ===== -->
+    
+<style id="kaniu-variables">
+/* ==========================================================================
+   VARIÁVEIS CSS (ROOT) - Design System
+   ========================================================================== */
+:root {
+    /* ===== CORES PRINCIPAIS ===== */
+    --primary-color: #5A5D7F;
+    --primary-background: #5A5D7FA0;
+    --primary-soft: #5A5D7F10;
+    --primary-strong: #5A5D7FAA;
+
+    /* ===== CORES DE FUNDO ===== */
+    --background-light: #EEF2F9;
+    --background-soft: #F5F6FB;
+    --card-background: #FFFFFF;
+
+    /* ===== CORES DE TEXTO ===== */
+    --text-dark: #372D1F;
+    --text-light: #6B7280;
+    --text-faded: #A0A6B5;
+
+    /* ===== CORES DE ALERTA ===== */
+    --warning-color: #C62828;
+    --success-color: #10B981;
+    --info-color: #3B82F6;
+
+    /* ===== BORDAS ===== */
+    --border-color: #E5E7F2;
+
+    /* ===== RAIOS DE BORDA ===== */
+    --radius-lg: 18px;
+    --radius-md: 12px;
+    --radius-sm: 6px;
+
+    /* ===== ESPAÇAMENTOS ===== */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+
+    /* ===== FONTES ===== */
+    --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-family-display: 'GoodDog', 'Inter', sans-serif;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+
+    /* ===== PESOS DE FONTE ===== */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* ===== TRANSIÇÕES ===== */
+    --transition-fast: 120ms ease;
+    --transition-normal: 200ms ease;
+    --transition-slow: 300ms ease;
+
+    /* ===== SOMBRAS ===== */
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 8px 18px rgba(90, 93, 127, 0.18);
+    --shadow-lg: 0 15px 45px rgba(15, 23, 42, 0.05);
+    --shadow-xl: 0 20px 60px rgba(15, 23, 42, 0.12);
+
+    /* ===== Z-INDEX ===== */
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-overlay: 300;
+    --z-modal: 400;
+    --z-tooltip: 500;
+
+    /* ===== BOTÕES ===== */
+    --button-padding: 6px 12px;
+    --button-font-size: 0.85rem;
+    --button-border-radius: 6px;
+
+    /* ===== TABS/TOOLBAR ===== */
+    --tab-toolbar-h: 44px;
+    --tab-content-pt: 20px;
+    --tab-header-offset: var(--tab-content-pt);
+}
+
+/* Ajuste de Altura da Toolbar para Telas Menores */
+@media (max-width: 768px) {
+    :root {
+        --tab-toolbar-h: 52px;
+    }
+}
+
+/* ===== MODO ESCURO (preparado para futuro) ===== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-light: #0F172A;
+        --background-soft: #1E293B;
+        --card-background: #1E293B;
+        --text-dark: #E2E8F0;
+        --text-light: #94A3B8;
+        --text-faded: #64748B;
+        --border-color: #334155;
+    }
+}
+</style>
+
+    
+<style id="kaniu-fonts-base">
+/* ==========================================================================
+   IMPORTAÇÕES E FONTES
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@font-face {
+    font-family: 'GoodDog';
+    src: url('https://viralatinhaz.uzd6db.easypanel.host/assets/fonts/GoodDog.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ==========================================================================
+   ESTILOS BASE
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-family-base);
+    margin: 0;
+    padding: 0;
+    background: var(--background-light);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+/* ===== LINKS ===== */
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+/* ===== INPUTS E FORMS ===== */
+button,
+input,
+select,
+textarea {
+    font-family: var(--font-family-base);
+    font-size: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+}
+
+/* ===== ÍCONES ===== */
+i {
+    color: inherit;
+}
+
+/* ===== HEADINGS ===== */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* ===== SCROLLBAR CUSTOMIZADA (WEBKIT) ===== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-light);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 4px;
+    border: 2px solid var(--background-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-color);
+}
+
+/* ===== SCROLLBAR (FIREFOX) ===== */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) var(--background-light);
+}
+</style>
+
+    
+<style id="kaniu-layout">
+/* ==========================================================================
+   ESTRUTURA PRINCIPAL
+   ========================================================================== */
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   MAIN COM SIDEBAR
+   ========================================================================== */
+.main-with-sidebar {
+    margin-left: 240px;
+    transition: margin-left 0.25s ease;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-with-sidebar.expanded {
+    margin-left: 72px;
+}
+
+/* ==========================================================================
+   MAIN CONTENT
+   ========================================================================== */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: calc(100% - 3rem);
+    margin: 2rem auto 3rem;
+    padding: 0 1.75rem 3rem;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* ==========================================================================
+   CONTENT GRID
+   ========================================================================== */
+.content-grid {
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.25rem;
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.app-header {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    box-sizing: border-box;
+    position: static;
+    margin: 0;
+    padding: 0;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.75rem;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.header-inner {
+    width: 100%;
+    padding: 1.25rem 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    justify-content: flex-end;
+}
+
+/* ==========================================================================
+   ANIMAL HEADER (página de detalhes)
+   ========================================================================== */
+.animal-header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.animal-photo-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.animal-photo {
+    width: 96px;
+    height: 96px;
+    border-radius: 16px;
+    object-fit: cover;
+    border: 4px solid var(--background-soft);
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.animal-photo:hover {
+    transform: translateY(-1px);
+}
+
+.animal-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.animal-title h1 {
+    font-family: var(--font-family-display);
+    font-size: 2.8rem;
+    font-weight: bold;
+    letter-spacing: 0.02em;
+    color: var(--primary-color);
+    margin: 0;
+    line-height: 1.1;
+}
+
+.animal-subline {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   OVERLAY
+   ========================================================================== */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    display: none;
+    z-index: var(--z-overlay);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 768px) {
+    main {
+        max-width: 100%;
+        padding: 0 1rem 2rem;
+        margin: 1rem auto 2rem;
+    }
+
+    .header-content {
+        padding: 1rem;
+    }
+
+    .animal-title h1 {
+        font-size: 1.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-with-sidebar {
+        margin-left: 0;
+    }
+}
+</style>
+
+    
+<style id="kaniu-components">
+/* ==========================================================================
+   BOTÕES
+   ========================================================================== */
+.btn,
+.detail-button,
+.quick-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--button-padding);
+    border-radius: var(--button-border-radius);
+    font-weight: 600;
+    font-size: var(--button-font-size);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    gap: 0.5rem;
+}
+
+.btn-primary,
+.quick-action {
+    background: var(--primary-color);
+    color: var(--card-background);
+}
+
+.btn-primary:hover,
+.quick-action:hover {
+    background: color-mix(in srgb, var(--primary-color) 85%, black 15%);
+    transform: translateY(-1px);
+}
+
+.detail-button {
+    background-color: var(--background-soft);
+    border: 1px solid transparent;
+    color: var(--text-dark);
+}
+
+.detail-button:hover {
+    background-color: var(--primary-color);
+    color: var(--card-background);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.btn-action,
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text-dark);
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.btn-action:hover,
+.icon-button:not(.delete-button):hover {
+    color: var(--primary-color);
+    background: var(--background-soft);
+}
+
+.icon-button.delete-button i {
+    color: #bbb !important;
+}
+
+.icon-button.delete-button:hover i {
+    color: var(--warning-color) !important;
+}
+
+/* ==========================================================================
+   CARDS
+   ========================================================================== */
+.card {
+    background: var(--card-background);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.card header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.card header h2 {
+    margin: 0;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+    color: var(--text-dark);
+}
+
+/* ==========================================================================
+   CHIPS / TAGS
+   ========================================================================== */
+.chip,
+.tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-soft);
+    color: var(--primary-color);
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 0.6rem 0.7rem;
+    line-height: 1;
+    cursor: default;
+    transition: all var(--transition-normal);
+    white-space: nowrap;
+}
+
+.chip.is-empty {
+    background: var(--primary-soft);
+    color: var(--text-light);
+}
+
+.chip.is-action {
+    background: var(--primary-soft);
+    color: var(--primary-color);
+    cursor: pointer;
+    border: 1px solid var(--primary-color);
+}
+
+.chip.is-action:hover {
+    background: var(--primary-color);
+    color: #FFF;
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   TABELAS
+   ========================================================================== */
+.table-card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 0;
+    background: var(--card-background);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    background: var(--background-soft);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.table-title i {
+    color: var(--primary-color);
+}
+
+.table-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: auto;
+    min-height: 0;
+}
+
+table,
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 520px;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 0.85rem 1rem;
+    font-size: 0.875rem;
+    color: var(--text-dark);
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background: var(--background-soft);
+    z-index: 2;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--text-light);
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+}
+
+td {
+    border-bottom: 1px solid var(--border-color);
+}
+
+tbody tr {
+    transition: background var(--transition-fast);
+}
+
+tbody tr:hover {
+    background: var(--background-light);
+}
+
+.table-col-long {
+    min-width: 220px;
+}
+
+/* ==========================================================================
+   TABS
+   ========================================================================== */
+.tab-nav {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding: 0 1.75rem 0;
+    margin: 0;
+}
+
+.tab-btn {
+    border: none;
+    background: transparent;
+    padding: 0.6rem 0.9rem;
+    border-radius: var(--radius-md);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: color var(--transition-fast),
+                background var(--transition-fast),
+                transform var(--transition-fast);
+}
+
+.tab-btn:hover {
+    color: var(--primary-color);
+    background: var(--card-background);
+    transform: translateY(-1px);
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    color: #ffffff;
+    box-shadow: var(--shadow-md);
+}
+
+.tab-btn.active:hover i {
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   POP-UPS / MODALS
+   ========================================================================== */
+.pop-up-menu,
+.pop-up-animais {
+    width: min(90vw, 450px);
+    max-height: 80vh;
+    height: auto;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--card-background);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+    z-index: var(--z-modal);
+}
+
+.pop-up-menu h2 {
+    margin: 20px 0 10px 0;
+    font-size: 1rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.pop-up-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-faded);
+    transition: color var(--transition-fast);
+}
+
+.pop-up-close:hover {
+    color: var(--text-dark);
+}
+
+.pop-up-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.pop-up-actions .confirm-button,
+.pop-up-actions .cancel-button,
+.pop-up-actions .action-button {
+    padding: var(--button-padding);
+    font-size: var(--button-font-size);
+    border-radius: var(--button-border-radius);
+    border: none;
+    cursor: pointer;
+    flex: 1;
+    max-width: 120px;
+    font-weight: 600;
+    transition: all var(--transition-normal);
+}
+
+.pop-up-actions .confirm-button,
+.pop-up-actions .action-button {
+    background-color: var(--primary-color);
+    color: var(--card-background);
+}
+
+.pop-up-actions .confirm-button:hover,
+.pop-up-actions .action-button:hover {
+    background-color: var(--primary-strong);
+    transform: translateY(-1px);
+}
+
+.pop-up-actions .cancel-button {
+    background-color: var(--background-light);
+    color: var(--primary-color);
+}
+
+.pop-up-actions .cancel-button:hover {
+    background-color: var(--primary-color);
+    color: var(--card-background);
+}
+
+/* ==========================================================================
+   FORM INPUTS
+   ========================================================================== */
+.pop-up-menu label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 4px;
+}
+
+.pop-up-menu input,
+.pop-up-menu select,
+.pop-up-menu textarea,
+.date-input {
+    background-color: var(--background-soft);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    width: 100%;
+    transition: border-color var(--transition-normal),
+                box-shadow var(--transition-normal);
+}
+
+.pop-up-menu input:focus,
+.pop-up-menu select:focus,
+.pop-up-menu textarea:focus,
+.date-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-soft);
+    outline: none;
+}
+
+/* ==========================================================================
+   MENSAGENS
+   ========================================================================== */
+.empty-message,
+.no-results {
+    text-align: center;
+    color: var(--text-faded);
+    font-size: 0.9rem;
+    margin: 2rem 0;
+    padding: 2rem 1rem;
+}
+
+.empty-message i {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+}
+
+.error-message {
+    color: var(--warning-color) !important;
+}
+
+/* ==========================================================================
+   TOAST / ALERTAS
+   ========================================================================== */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--card-background);
+    color: var(--text-dark);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xl);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all var(--transition-normal);
+    z-index: var(--z-tooltip);
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast-success {
+    border-left: 4px solid var(--success-color);
+}
+
+.toast-error {
+    border-left: 4px solid var(--warning-color);
+}
+
+.toast i {
+    font-size: 1.25rem;
+}
+
+.toast-success i {
+    color: var(--success-color);
+}
+
+.toast-error i {
+    color: var(--warning-color);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .chip {
+        font-size: 0.72rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .tab-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    th, td {
+        padding: 0.65rem 0.75rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pop-up-menu {
+        width: 95vw;
+    }
+
+    .tab-btn {
+        padding: 0.45rem 0.65rem;
+        font-size: 0.75rem;
+    }
+}
+</style>
+
+    
+<style id="kaniu-sidebar">
+/* ==========================================================================
+   SIDEBAR LAYOUT
+   ========================================================================== */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 240px;
+    background-color: var(--card-background);
+    border-right: 1px solid var(--border-color);
+    box-shadow: 4px 0 12px rgba(15, 23, 42, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: var(--z-dropdown);
+    transition: width 0.25s ease;
+}
+
+.sidebar.collapsed {
+    width: 72px;
+}
+
+/* ==========================================================================
+   SIDEBAR HEADER
+   ========================================================================== */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-logo {
+    height: 32px;
+    transition: opacity 0.25s ease;
+}
+
+.sidebar.collapsed .sidebar-logo {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sidebar-toggle {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-normal);
+}
+
+.sidebar-toggle:hover {
+    background: var(--primary-soft);
+    color: var(--primary-strong);
+}
+
+/* ==========================================================================
+   SIDEBAR MENU
+   ========================================================================== */
+.sidebar-menu,
+.sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 12px;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    text-align: left;
+    transition: background var(--transition-normal),
+                color var(--transition-normal),
+                transform var(--transition-fast);
+}
+
+.sidebar-item i {
+    font-size: 1.1rem;
+    min-width: 20px;
+    text-align: center;
+}
+
+.sidebar-item:hover {
+    background: var(--primary-soft);
+    color: var(--primary-color);
+    transform: translateX(2px);
+}
+
+.sidebar-item.active {
+    background: var(--primary-color);
+    color: #fff;
+    box-shadow: var(--shadow-md);
+}
+
+.sidebar-item.active:hover {
+    transform: translateX(0);
+}
+
+.sidebar.collapsed .sidebar-item {
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-item span {
+    display: none;
+}
+
+/* ==========================================================================
+   SIDEBAR FOOTER
+   ========================================================================== */
+.sidebar-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 8px;
+    margin-top: auto;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 240px;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .main-with-sidebar {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+    }
+}
+</style>
+
+    
+<style id="kaniu-utilities">
+/* ==========================================================================
+   ESPAÇAMENTOS
+   ========================================================================== */
+.m-0 { margin: 0; }
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+
+.p-0 { padding: 0; }
+.p-1 { padding: var(--spacing-sm); }
+.p-2 { padding: var(--spacing-md); }
+.p-3 { padding: var(--spacing-lg); }
+
+/* ==========================================================================
+   DISPLAY
+   ========================================================================== */
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.d-flex { display: flex !important; }
+.d-inline-flex { display: inline-flex !important; }
+.d-grid { display: grid !important; }
+
+/* ==========================================================================
+   FLEXBOX
+   ========================================================================== */
+.flex-column { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.align-center { align-items: center; }
+.align-start { align-items: flex-start; }
+.align-end { align-items: flex-end; }
+.flex-wrap { flex-wrap: wrap; }
+.gap-1 { gap: var(--spacing-sm); }
+.gap-2 { gap: var(--spacing-md); }
+.gap-3 { gap: var(--spacing-lg); }
+
+/* ==========================================================================
+   TEXTO
+   ========================================================================== */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-sm { font-size: var(--font-size-sm); }
+.text-base { font-size: var(--font-size-base); }
+.text-lg { font-size: var(--font-size-lg); }
+
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+.text-primary { color: var(--primary-color); }
+.text-dark { color: var(--text-dark); }
+.text-light { color: var(--text-light); }
+.text-faded { color: var(--text-faded); }
+.text-warning { color: var(--warning-color); }
+.text-success { color: var(--success-color); }
+
+/* ==========================================================================
+   CORES DE FUNDO
+   ========================================================================== */
+.bg-primary { background-color: var(--primary-color); }
+.bg-light { background-color: var(--background-light); }
+.bg-soft { background-color: var(--background-soft); }
+.bg-white { background-color: var(--card-background); }
+
+/* ==========================================================================
+   BORDAS
+   ========================================================================== */
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-full { border-radius: 9999px; }
+
+.border { border: 1px solid var(--border-color); }
+.border-0 { border: none; }
+
+/* ==========================================================================
+   SOMBRAS
+   ========================================================================== */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+.shadow-none { box-shadow: none; }
+
+/* ==========================================================================
+   LARGURA E ALTURA
+   ========================================================================== */
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.min-h-0 { min-height: 0; }
+
+/* ==========================================================================
+   OVERFLOW
+   ========================================================================== */
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-y-auto { overflow-y: auto; }
+.overflow-x-auto { overflow-x: auto; }
+
+/* ==========================================================================
+   POSITION
+   ========================================================================== */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+
+/* ==========================================================================
+   CURSOR
+   ========================================================================== */
+.cursor-pointer { cursor: pointer; }
+.cursor-default { cursor: default; }
+.cursor-not-allowed { cursor: not-allowed; }
+
+/* ==========================================================================
+   VISIBILIDADE
+   ========================================================================== */
+.invisible { visibility: hidden; }
+.visible { visibility: visible; }
+.opacity-0 { opacity: 0; }
+.opacity-50 { opacity: 0.5; }
+.opacity-100 { opacity: 1; }
+
+/* ==========================================================================
+   TRANSIÇÕES
+   ========================================================================== */
+.transition-fast { transition: all var(--transition-fast); }
+.transition-normal { transition: all var(--transition-normal); }
+.transition-slow { transition: all var(--transition-slow); }
+
+/* ==========================================================================
+   ESTADOS DE STATUS (para tabelas e listas)
+   ========================================================================== */
+.status-concluido {
+    background: rgba(16, 185, 129, 0.03);
+}
+
+.status-programado {
+    background: rgba(59, 130, 246, 0.03);
+}
+
+.status-atrasado {
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.status-atrasado .date-col {
+    color: var(--warning-color);
+    font-weight: 600;
+}
+
+.highlight-loss {
+    color: var(--warning-color) !important;
+    font-weight: 600;
+}
+
+.days-red {
+    color: var(--warning-color) !important;
+    font-weight: 600;
+}
+</style>
+
+
+    <!-- ===== CSS DA PÁGINA ===== -->
+    
+<style>
+/* ===== CONTAINER DO CONTEÚDO ===== */
+.content-grid {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+/* ===== CONTEÚDO DO HISTÓRICO ===== */
+.historico-content {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+  margin-top: 1rem;
+}
+
+.table-card {
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 0 15px 45px rgba(15, 23, 42, 0.05);
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: var(--background-soft);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.table-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.table-title i {
+  color: var(--primary-color);
+}
+
+.table-info {
+  color: var(--text-light);
+  font-size: 0.875rem;
+}
+
+/* ===== TABELA ===== */
+.table-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: auto;
+  min-height: 0;
+}
+
+.eventos-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.eventos-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--background-soft);
+}
+
+/* Arredonda os cantos superiores da tabela */
+.eventos-table thead th:first-child {
+  border-top-left-radius: var(--radius-md);
+}
+
+.eventos-table thead th:last-child {
+  border-top-right-radius: var(--radius-md);
+}
+
+.eventos-table th {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--border-color);
+  white-space: nowrap;
+  background: var(--background-soft);
+  overflow: hidden;
+}
+
+.eventos-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.875rem;
+  color: var(--text-dark);
+}
+
+.eventos-table tbody tr {
+  transition: background 120ms ease;
+}
+
+.eventos-table tbody tr:hover {
+  background: rgba(90, 93, 127, 0.03);
+}
+
+/* Colunas específicas */
+.date-col {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.animal-col {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.tipo-col {
+  white-space: nowrap;
+}
+
+.tipo-col i {
+  color: var(--primary-color);
+  margin-right: 0.5rem;
+}
+
+.desc-col {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actions-col {
+  text-align: center;
+  width: 80px;
+}
+
+/* Status das linhas */
+.status-concluido {
+  background: rgba(16, 185, 129, 0.03);
+}
+
+.status-programado {
+  background: rgba(59, 130, 246, 0.03);
+}
+
+.status-atrasado {
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.status-atrasado .date-col {
+  color: #DC2626;
+  font-weight: 600;
+}
+
+/* ===== AÇÕES ===== */
+.btn-action {
+  padding: 0.5rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-action:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* ===== MENSAGENS VAZIAS ===== */
+.empty-message {
+  text-align: center !important;
+  padding: 3rem 1rem !important;
+  color: var(--text-faded) !important;
+  font-style: italic;
+}
+
+.empty-message i {
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.error-message {
+  color: #DC2626 !important;
+}
+
+/* ===== PAGINAÇÃO ===== */
+.table-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: var(--background-soft);
+  border-top: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.btn-page {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-page:hover:not(:disabled) {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.btn-page:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.page-info {
+  color: var(--text-light);
+  font-size: 0.875rem;
+}
+
+.page-info span {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* ===== SCROLLBAR ===== */
+.table-wrapper::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: var(--background-light);
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--text-faded);
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-color);
+}
+
+/* Scrollbar Firefox */
+.table-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-faded) var(--background-light);
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+  .tab-nav {
+    gap: 0.25rem;
+    overflow-x: auto;
+    padding-bottom: 0.75rem;
+  }
+  
+  .tab-btn {
+    padding: 0.65rem 1rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+  
+  .table-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .eventos-table th,
+  .eventos-table td {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .desc-col {
+    max-width: 200px;
+  }
+  
+  .table-pagination {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  
+  .page-info {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab-nav {
+    gap: 0.25rem;
+  }
+  
+  .tab-btn {
+    padding: 0.6rem 0.85rem;
+    font-size: 0.8rem;
+  }
+  
+  .tab-btn i {
+    font-size: 0.9rem;
+  }
+  
+  .eventos-table {
+    min-width: 700px;
+  }
+  
+  .desc-col {
+    max-width: 150px;
+  }
+}
+
+/* ===== MODO ESCURO ===== */
+@media (prefers-color-scheme: dark) {
+  .table-card,
+  .filters-bar {
+    background: var(--card-background, #1E293B);
+    border-color: var(--border-color, #334155);
+  }
+  
+  .table-header {
+    background: var(--background-soft, #0F172A);
+    border-bottom-color: var(--border-color, #334155);
+  }
+  
+  .eventos-table thead {
+    background: var(--background-soft, #0F172A);
+  }
+  
+  .eventos-table th {
+    color: var(--text-light, #94A3B8);
+    border-bottom-color: var(--border-color, #334155);
+  }
+  
+  .eventos-table td {
+    border-bottom-color: var(--border-color, #334155);
+    color: var(--text-dark, #CBD5E1);
+  }
+  
+  .eventos-table tbody tr:hover {
+    background: var(--background-light, #334155);
+  }
+}
+</style>
+
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <!-- ===== SIDEBAR ===== -->
+    
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <button id="sidebar-toggle" class="sidebar-toggle">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <img src="https://viralatinhaz.uzd6db.easypanel.host/assets/kaniu-logo-blue.png" alt="Kaniu" class="sidebar-logo" />
+      </div>
+
+      <nav class="sidebar-menu">
+        <button class="sidebar-item" data-target="painel">
+          <i class="fa-solid fa-chart-pie"></i><span>Painel</span>
+        </button>
+        <button class="sidebar-item" data-target="animais">
+          <i class="fa-solid fa-paw"></i><span>Animais</span>
+        </button>
+        <button class="sidebar-item" data-target="historico">
+          <i class="fa-solid fa-clock-rotate-left"></i><span>Histórico</span>
+        </button>
+        <button class="sidebar-item" data-target="avaliacoes">
+          <i class="fa-solid fa-stethoscope"></i><span>Avaliações</span>
+        </button>
+        <button class="sidebar-item" data-target="tratamentos">
+          <i class="fa-solid fa-prescription-bottle-medical"></i><span>Tratamentos</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="sidebar-item" id="toggle-theme">
+          <i class="fa-solid fa-circle-half-stroke"></i><span>Tema</span>
+        </button>
+        <button class="sidebar-item">
+          <i class="fa-solid fa-warehouse"></i><span>Canil</span>
+        </button>
+        <button class="sidebar-item">
+          <i class="fa-solid fa-user"></i><span>Perfil</span>
+        </button>
+      </div>
+    </aside>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.sidebar-item[data-target]');
+        const currentPage = 'historico';
+        console.log('currentPage :: ',currentPage);
+  
+        // Aplica destaque ao botão da página atual
+        buttons.forEach(btn => {
+          const target = btn.getAttribute('data-target');
+            btn.classList.remove('active');
+          if (target === currentPage) {
+            btn.classList.add('active');
+          }
+  
+          // Redireciona diretamente ao clicar
+          btn.addEventListener('click', () => {
+            end_url = "https://karah-n8n.uzd6db.easypanel.host/webhook/kaniu-admin-dev-viralatinhaz?pagina="+target;
+            console.log('target-->',target);
+            window.location.href = end_url;
+          });
+        });
+      });
+  </script>
+
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <div class="main-with-sidebar">
+        <main>
+            <div class="content-grid">
+
+              <!-- ===== TABS DE FILTRO ===== -->
+              <div class="main-container">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="realizados">
+                        <i class="fa-solid fa-check-circle"></i>
+                        Realizados
+                    </button>
+                    <button class="tab-btn" data-tab="programados">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        Programados
+                    </button>
+                    <button class="tab-btn" data-tab="atrasados">
+                        <i class="fa-solid fa-exclamation-triangle"></i>
+                        Atrasados
+                    </button>
+                </div>
+              </div>
+
+              <!-- ===== TABELA DE EVENTOS ===== -->
+              <section class="historico-content">
+                <div class="table-card">
+
+                  <!-- Header da Tabela -->
+                  <div class="table-header">
+                    <div class="table-title">
+                      <i class="fa-solid fa-list"></i>
+                      <span id="table-title">Eventos Realizados</span>
+                    </div>
+                    <div class="table-info">
+                      <span id="records-count">0 registros</span>
+                    </div>
+                  </div>
+
+                  <!-- Tabela -->
+                  <div class="table-wrapper">
+                    <table class="eventos-table">
+                      <thead>
+                        <tr>
+                          <th>Data</th>
+                          <th>Animal</th>
+                          <th>Tipo</th>
+                          <th>Descrição</th>
+                          <th>Veterinário</th>
+                          <th>Clínica</th>
+                          <th class="actions-col">Ações</th>
+                        </tr>
+                      </thead>
+                      <tbody id="eventos-tbody">
+                        <tr>
+                          <td colspan="7" class="empty-message">
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                            Carregando eventos...
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <!-- Paginação -->
+                  <div class="table-pagination">
+                    <button class="btn-page" id="prev-page" disabled>
+                      <i class="fa-solid fa-chevron-left"></i>
+                      Anterior
+                    </button>
+                    <span class="page-info">
+                      Página <span id="current-page">1</span> de <span id="total-pages">1</span>
+                    </span>
+                    <button class="btn-page" id="next-page" disabled>
+                      Próxima
+                      <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                  </div>
+
+                </div>
+              </section>
+
+            </div>
+        </main>
+    </div>
+  </div>
+
+  <!-- ===== OVERLAY (para modals futuros) ===== -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- ===== JAVASCRIPT MODULAR ===== -->
+  
+<script id="kaniu-api-module">
+/**
+ * Módulo de comunicação com API do Kaniu
+ * Centraliza todas as requisições HTTP
+ */
+const KaniuAPI = {
+    // ===== CONFIGURAÇÃO =====
+    config: {
+        baseURL: 'https://karah-n8n.uzd6db.easypanel.host',
+        canilId: 1,
+        timeout: 30000, // 30 segundos
+    },
+
+    // ===== ENDPOINTS =====
+    endpoints: {
+        eventos: '/webhook/canil-eventos',
+        painel: '/webhook/kaniu-pack-panel',
+        animais: '/webhook/kaniu-animais',
+        animalData: '/webhook/kaniu-animal-data-tables',
+    },
+
+    /**
+     * Requisição HTTP genérica
+     * @param {string} endpoint - URL do endpoint
+     * @param {object} options - Opções da requisição
+     * @returns {Promise<any>}
+     */
+    async request(endpoint, options = {}) {
+        const url = this.config.baseURL + endpoint;
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), this.config.timeout);
+
+        const config = {
+            method: options.method || 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+                ...options.headers
+            },
+            signal: controller.signal,
+            credentials: options.credentials || 'same-origin',
+            ...options
+        };
+
+        // Adiciona body para POST/PUT
+        if (['POST', 'PUT'].includes(config.method) && options.body) {
+            config.body = JSON.stringify({
+                canil_id: this.config.canilId,
+                ...options.body
+            });
+        }
+
+        try {
+            const response = await fetch(url, config);
+            clearTimeout(timeoutId);
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            return data;
+
+        } catch (error) {
+            clearTimeout(timeoutId);
+
+            if (error.name === 'AbortError') {
+                throw new Error('Requisição excedeu o tempo limite');
+            }
+
+            console.error('API Error:', error);
+            throw error;
+        }
+    },
+
+    /**
+     * Busca eventos do canil
+     * @param {object} filters - Filtros opcionais
+     * @returns {Promise<Array>}
+     */
+    async getEventos(filters = {}) {
+        try {
+            const data = await this.request(this.endpoints.eventos, {
+                body: filters
+            });
+
+            // Normaliza resposta (pode vir em diferentes formatos)
+
+            // Formato 1: {eventos: Array} ← ESTRUTURA REAL DA API
+            if (data?.eventos && Array.isArray(data.eventos)) {
+                return data.eventos;
+            }
+
+            // Formato 2: [{data: Array}]
+            if (Array.isArray(data) && data[0]?.data) {
+                return data[0].data;
+            }
+
+            // Formato 3: Array direto
+            if (Array.isArray(data)) {
+                return data;
+            }
+
+            // Fallback: retorna array vazio
+            return [];
+
+        } catch (error) {
+            console.error('Erro ao buscar eventos:', error);
+            throw error;
+        }
+    },
+
+    /**
+     * Busca dados do painel/dashboard
+     * @returns {Promise<object>}
+     */
+    async getPainelData() {
+        try {
+            const data = await this.request(this.endpoints.painel);
+
+            // Normaliza resposta
+            return Array.isArray(data) ? data[0] || {} : data;
+
+        } catch (error) {
+            console.error('Erro ao buscar dados do painel:', error);
+            throw error;
+        }
+    },
+
+    /**
+     * Busca lista de animais
+     * @param {string} status - Status dos animais (Abrigado, Adotado, etc)
+     * @returns {Promise<Array>}
+     */
+    async getAnimais(status = 'Abrigado') {
+        try {
+            const data = await this.request(this.endpoints.animais, {
+                body: { status }
+            });
+
+            // Normaliza resposta
+            if (data?.animals) return data.animals;
+            if (Array.isArray(data)) return data;
+            return [];
+
+        } catch (error) {
+            console.error('Erro ao buscar animais:', error);
+            throw error;
+        }
+    },
+
+    /**
+     * Busca detalhes de um animal específico
+     * @param {string} animalId - ID do animal
+     * @returns {Promise<object>}
+     */
+    async getAnimalDetails(animalId) {
+        try {
+            const data = await this.request(this.endpoints.animais, {
+                body: { animal_id: animalId }
+            });
+
+            return data;
+
+        } catch (error) {
+            console.error('Erro ao buscar detalhes do animal:', error);
+            throw error;
+        }
+    },
+
+    /**
+     * Busca opções de data tables (raças, cores, etc)
+     * @param {string} table - Nome da tabela
+     * @returns {Promise<Array>}
+     */
+    async getDataTableOptions(table) {
+        try {
+            const data = await this.request(this.endpoints.animalData, {
+                body: { table }
+            });
+
+            return Array.isArray(data) ? data : [];
+
+        } catch (error) {
+            console.error('Erro ao buscar opções da tabela:', error);
+            throw error;
+        }
+    },
+
+    /**
+     * Define o ID do canil
+     * @param {number} canilId
+     */
+    setCanilId(canilId) {
+        this.config.canilId = canilId;
+    },
+
+    /**
+     * Define a URL base
+     * @param {string} baseURL
+     */
+    setBaseURL(baseURL) {
+        this.config.baseURL = baseURL;
+    }
+};
+
+// Expõe globalmente para uso fácil
+window.KaniuAPI = KaniuAPI;
+
+console.log('✅ Kaniu API Module carregado');
+</script>
+
+  
+<script id="kaniu-dom-helpers">
+/**
+ * Módulo de helpers para manipulação de DOM
+ * Funções reutilizáveis para operações comuns
+ */
+const KaniuDOM = {
+    /**
+     * Renderiza tabela vazia
+     * @param {HTMLElement} tbody - Elemento tbody
+     * @param {number} colspan - Número de colunas
+     * @param {string} message - Mensagem a exibir
+     */
+    renderEmptyTable(tbody, colspan, message = 'Nenhum dado encontrado') {
+        if (!tbody) return;
+
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="${colspan}" class="empty-message">
+                    <i class="fa-solid fa-inbox"></i>
+                    ${message}
+                </td>
+            </tr>
+        `;
+    },
+
+    /**
+     * Renderiza estado de loading
+     * @param {HTMLElement} tbody - Elemento tbody
+     * @param {number} colspan - Número de colunas
+     */
+    renderLoading(tbody, colspan) {
+        if (!tbody) return;
+
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="${colspan}" class="empty-message">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    Carregando...
+                </td>
+            </tr>
+        `;
+    },
+
+    /**
+     * Renderiza mensagem de erro
+     * @param {HTMLElement} tbody - Elemento tbody
+     * @param {number} colspan - Número de colunas
+     * @param {Error|string} error - Erro ou mensagem
+     */
+    renderError(tbody, colspan, error) {
+        if (!tbody) return;
+
+        const message = typeof error === 'string'
+            ? error
+            : (error?.message || 'Erro ao carregar dados');
+
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="${colspan}" class="empty-message error-message">
+                    <i class="fa-solid fa-exclamation-circle"></i>
+                    ${message}
+                </td>
+            </tr>
+        `;
+    },
+
+    /**
+     * Formata data para padrão brasileiro
+     * @param {string|Date} dateString - Data a formatar
+     * @returns {string}
+     */
+    formatDate(dateString) {
+        if (!dateString) return '-';
+
+        try {
+            const date = new Date(dateString);
+            if (isNaN(date.getTime())) return '-';
+
+            return date.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        } catch (error) {
+            console.error('Erro ao formatar data:', error);
+            return '-';
+        }
+    },
+
+    /**
+     * Formata data e hora
+     * @param {string|Date} dateString - Data a formatar
+     * @returns {string}
+     */
+    formatDateTime(dateString) {
+        if (!dateString) return '-';
+
+        try {
+            const date = new Date(dateString);
+            if (isNaN(date.getTime())) return '-';
+
+            return date.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        } catch (error) {
+            console.error('Erro ao formatar data/hora:', error);
+            return '-';
+        }
+    },
+
+    /**
+     * Calcula diferença em dias entre duas datas
+     * @param {string|Date} date1 - Data inicial
+     * @param {string|Date} date2 - Data final (padrão: hoje)
+     * @returns {number}
+     */
+    daysDifference(date1, date2 = new Date()) {
+        try {
+            const d1 = new Date(date1);
+            const d2 = new Date(date2);
+
+            const diffTime = Math.abs(d2 - d1);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            return diffDays;
+        } catch (error) {
+            console.error('Erro ao calcular diferença de dias:', error);
+            return 0;
+        }
+    },
+
+    /**
+     * Mostra toast/alerta
+     * @param {string} message - Mensagem
+     * @param {string} type - Tipo (success, error, info)
+     * @param {number} duration - Duração em ms
+     */
+    showToast(message, type = 'success', duration = 3000) {
+        // Remove toasts existentes
+        const existingToasts = document.querySelectorAll('.toast');
+        existingToasts.forEach(toast => toast.remove());
+
+        // Cria novo toast
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+
+        const icon = type === 'success' ? 'check-circle' :
+                     type === 'error' ? 'exclamation-circle' :
+                     'info-circle';
+
+        toast.innerHTML = `
+            <i class="fa-solid fa-${icon}"></i>
+            <span>${message}</span>
+        `;
+
+        document.body.appendChild(toast);
+
+        // Anima entrada
+        requestAnimationFrame(() => {
+            toast.classList.add('show');
+        });
+
+        // Remove após duração
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+        }, duration);
+    },
+
+    /**
+     * Mostra/oculta overlay
+     * @param {boolean} show - Mostrar ou ocultar
+     */
+    toggleOverlay(show = true) {
+        const overlay = document.getElementById('overlay') ||
+                       document.querySelector('.overlay');
+
+        if (overlay) {
+            overlay.style.display = show ? 'block' : 'none';
+        }
+    },
+
+    /**
+     * Mostra/oculta popup
+     * @param {string} popupId - ID do popup
+     * @param {boolean} show - Mostrar ou ocultar
+     */
+    togglePopup(popupId, show = true) {
+        const popup = document.getElementById(popupId);
+
+        if (popup) {
+            popup.style.display = show ? 'flex' : 'none';
+            this.toggleOverlay(show);
+        }
+    },
+
+    /**
+     * Debounce - Limita frequência de execução de função
+     * @param {Function} func - Função a executar
+     * @param {number} wait - Tempo de espera em ms
+     * @returns {Function}
+     */
+    debounce(func, wait = 300) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    },
+
+    /**
+     * Throttle - Garante execução em intervalos
+     * @param {Function} func - Função a executar
+     * @param {number} limit - Intervalo em ms
+     * @returns {Function}
+     */
+    throttle(func, limit = 300) {
+        let inThrottle;
+        return function(...args) {
+            if (!inThrottle) {
+                func.apply(this, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    },
+
+    /**
+     * Sanitiza HTML para prevenir XSS
+     * @param {string} str - String a sanitizar
+     * @returns {string}
+     */
+    sanitizeHTML(str) {
+        const temp = document.createElement('div');
+        temp.textContent = str;
+        return temp.innerHTML;
+    },
+
+    /**
+     * Formata número com separadores
+     * @param {number} num - Número
+     * @param {number} decimals - Casas decimais
+     * @returns {string}
+     */
+    formatNumber(num, decimals = 0) {
+        if (num == null) return '-';
+
+        return Number(num).toLocaleString('pt-BR', {
+            minimumFractionDigits: decimals,
+            maximumFractionDigits: decimals
+        });
+    },
+
+    /**
+     * Copia texto para clipboard
+     * @param {string} text - Texto a copiar
+     * @returns {Promise<boolean>}
+     */
+    async copyToClipboard(text) {
+        try {
+            await navigator.clipboard.writeText(text);
+            this.showToast('Copiado para área de transferência', 'success');
+            return true;
+        } catch (error) {
+            console.error('Erro ao copiar:', error);
+            this.showToast('Erro ao copiar', 'error');
+            return false;
+        }
+    },
+
+    /**
+     * Rola até elemento
+     * @param {string|HTMLElement} element - Seletor ou elemento
+     * @param {object} options - Opções de scroll
+     */
+    scrollTo(element, options = {}) {
+        const el = typeof element === 'string'
+            ? document.querySelector(element)
+            : element;
+
+        if (el) {
+            el.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+                ...options
+            });
+        }
+    }
+};
+
+// Expõe globalmente
+window.KaniuDOM = KaniuDOM;
+
+console.log('✅ Kaniu DOM Helpers carregado');
+</script>
+
+  
+<script id="kaniu-state-manager">
+/**
+ * Gerenciador de estado global da aplicação
+ * Permite compartilhar dados entre componentes
+ */
+const KaniuState = {
+    // ===== ESTADO INICIAL =====
+    state: {
+        user: null,
+        canil: null,
+        currentPage: null,
+        filters: {},
+        cache: {},
+        loading: false
+    },
+
+    // ===== LISTENERS =====
+    listeners: {},
+
+    /**
+     * Obtém valor do estado
+     * @param {string} key - Chave do estado
+     * @returns {any}
+     */
+    get(key) {
+        return key.split('.').reduce((obj, k) => obj?.[k], this.state);
+    },
+
+    /**
+     * Define valor no estado
+     * @param {string} key - Chave do estado
+     * @param {any} value - Valor a definir
+     * @param {boolean} notify - Notificar listeners
+     */
+    set(key, value, notify = true) {
+        const keys = key.split('.');
+        const lastKey = keys.pop();
+        const target = keys.reduce((obj, k) => {
+            if (!obj[k]) obj[k] = {};
+            return obj[k];
+        }, this.state);
+
+        const oldValue = target[lastKey];
+        target[lastKey] = value;
+
+        // Notifica listeners se mudou
+        if (notify && oldValue !== value) {
+            this.notify(key, value, oldValue);
+        }
+    },
+
+    /**
+     * Atualiza múltiplos valores
+     * @param {object} updates - Objeto com updates
+     */
+    update(updates) {
+        Object.entries(updates).forEach(([key, value]) => {
+            this.set(key, value, false);
+        });
+
+        // Notifica todos de uma vez
+        this.notifyAll();
+    },
+
+    /**
+     * Reseta estado para valores iniciais
+     */
+    reset() {
+        this.state = {
+            user: null,
+            canil: null,
+            currentPage: null,
+            filters: {},
+            cache: {},
+            loading: false
+        };
+        this.notifyAll();
+    },
+
+    /**
+     * Registra listener para mudanças
+     * @param {string} key - Chave a observar
+     * @param {Function} callback - Função callback
+     * @returns {Function} Função para remover listener
+     */
+    subscribe(key, callback) {
+        if (!this.listeners[key]) {
+            this.listeners[key] = [];
+        }
+
+        this.listeners[key].push(callback);
+
+        // Retorna função para unsubscribe
+        return () => {
+            this.listeners[key] = this.listeners[key].filter(
+                cb => cb !== callback
+            );
+        };
+    },
+
+    /**
+     * Notifica listeners de uma chave específica
+     * @param {string} key - Chave alterada
+     * @param {any} newValue - Novo valor
+     * @param {any} oldValue - Valor anterior
+     */
+    notify(key, newValue, oldValue) {
+        const callbacks = this.listeners[key] || [];
+        callbacks.forEach(callback => {
+            try {
+                callback(newValue, oldValue);
+            } catch (error) {
+                console.error(`Erro no listener de '${key}':`, error);
+            }
+        });
+    },
+
+    /**
+     * Notifica todos os listeners
+     */
+    notifyAll() {
+        Object.entries(this.listeners).forEach(([key, callbacks]) => {
+            const value = this.get(key);
+            callbacks.forEach(callback => {
+                try {
+                    callback(value);
+                } catch (error) {
+                    console.error(`Erro no listener de '${key}':`, error);
+                }
+            });
+        });
+    },
+
+    // ===== CACHE =====
+
+    /**
+     * Salva no cache
+     * @param {string} key - Chave
+     * @param {any} data - Dados
+     * @param {number} ttl - Tempo de vida em ms
+     */
+    setCache(key, data, ttl = 300000) { // 5 minutos padrão
+        this.state.cache[key] = {
+            data,
+            timestamp: Date.now(),
+            ttl
+        };
+    },
+
+    /**
+     * Busca do cache
+     * @param {string} key - Chave
+     * @returns {any|null}
+     */
+    getCache(key) {
+        const cached = this.state.cache[key];
+
+        if (!cached) return null;
+
+        const age = Date.now() - cached.timestamp;
+
+        // Cache expirado
+        if (age > cached.ttl) {
+            delete this.state.cache[key];
+            return null;
+        }
+
+        return cached.data;
+    },
+
+    /**
+     * Limpa cache
+     * @param {string} key - Chave específica ou undefined para limpar tudo
+     */
+    clearCache(key) {
+        if (key) {
+            delete this.state.cache[key];
+        } else {
+            this.state.cache = {};
+        }
+    },
+
+    // ===== LOADING =====
+
+    /**
+     * Define estado de loading
+     * @param {boolean} loading - Estado
+     */
+    setLoading(loading) {
+        this.set('loading', loading);
+    },
+
+    /**
+     * Verifica se está loading
+     * @returns {boolean}
+     */
+    isLoading() {
+        return this.get('loading');
+    },
+
+    // ===== FILTROS =====
+
+    /**
+     * Define filtro
+     * @param {string} key - Chave do filtro
+     * @param {any} value - Valor
+     */
+    setFilter(key, value) {
+        this.set(`filters.${key}`, value);
+    },
+
+    /**
+     * Obtém filtro
+     * @param {string} key - Chave do filtro
+     * @returns {any}
+     */
+    getFilter(key) {
+        return this.get(`filters.${key}`);
+    },
+
+    /**
+     * Obtém todos os filtros
+     * @returns {object}
+     */
+    getAllFilters() {
+        return this.get('filters') || {};
+    },
+
+    /**
+     * Limpa filtros
+     */
+    clearFilters() {
+        this.set('filters', {});
+    },
+
+    // ===== PERSISTÊNCIA =====
+
+    /**
+     * Verifica se localStorage está disponível
+     * @returns {boolean}
+     */
+    isLocalStorageAvailable() {
+        try {
+            const test = '__kaniu_test__';
+            localStorage.setItem(test, test);
+            localStorage.removeItem(test);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    },
+
+    /**
+     * Salva estado no localStorage
+     * @param {string} key - Chave de armazenamento
+     */
+    saveToLocalStorage(key = 'kaniu_state') {
+        if (!this.isLocalStorageAvailable()) {
+            console.warn('⚠️ localStorage não disponível (sandbox). Estado não será persistido.');
+            return false;
+        }
+
+        try {
+            const stateToSave = {
+                user: this.state.user,
+                canil: this.state.canil,
+                filters: this.state.filters
+            };
+
+            localStorage.setItem(key, JSON.stringify(stateToSave));
+            return true;
+        } catch (error) {
+            console.error('❌ Erro ao salvar estado:', error);
+            return false;
+        }
+    },
+
+    /**
+     * Carrega estado do localStorage
+     * @param {string} key - Chave de armazenamento
+     */
+    loadFromLocalStorage(key = 'kaniu_state') {
+        if (!this.isLocalStorageAvailable()) {
+            console.warn('⚠️ localStorage não disponível. Usando apenas memória.');
+            return false;
+        }
+
+        try {
+            const saved = localStorage.getItem(key);
+
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                this.update(parsed);
+                return true;
+            }
+        } catch (error) {
+            console.error('❌ Erro ao carregar estado:', error);
+        }
+        return false;
+    },
+
+    /**
+     * Debug - Imprime estado atual
+     */
+    debug() {
+        console.group('🐾 Kaniu State');
+        console.log('Estado:', this.state);
+        console.log('Listeners:', Object.keys(this.listeners));
+        console.groupEnd();
+    }
+};
+
+// Expõe globalmente
+window.KaniuState = KaniuState;
+
+// Auto-carrega estado salvo
+KaniuState.loadFromLocalStorage();
+
+console.log('✅ Kaniu State Manager carregado');
+</script>
+
+
+  <!-- ===== SCRIPT DA PÁGINA ===== -->
+  
+<script id="historico-page-script">
+/**
+ * Página de Histórico - Lógica isolada e modular
+ * Depende de: KaniuAPI, KaniuDOM, KaniuState
+ */
+const HistoricoPage = {
+    // ===== CONFIGURAÇÃO =====
+    config: {
+        itemsPerPage: 50,
+        currentPage: 1,
+        currentFilter: 'realizados'
+    },
+
+    // ===== DADOS =====
+    data: {
+        todosEventos: [],
+        eventosFiltrados: []
+    },
+
+    // ===== ÍCONES POR TIPO =====
+    tipoIcons: {
+        'Pesagem': 'fa-weight-scale',
+        'Internação': 'fa-hospital',
+        'Vermifugação': 'fa-pills',
+        'Observação': 'fa-eye',
+        'Vacinação': 'fa-syringe',
+        'Consulta': 'fa-stethoscope',
+        'Cirurgia': 'fa-user-doctor',
+        'Exame': 'fa-flask',
+        'Banho': 'fa-shower',
+        'Tosa': 'fa-scissors',
+        'Castração': 'fa-scissors',
+        'Adoção': 'fa-heart'
+    },
+
+    // ===== TÍTULOS DAS ABAS =====
+    tabTitles: {
+        'realizados': 'Eventos Realizados',
+        'programados': 'Eventos Programados',
+        'atrasados': 'Eventos Atrasados'
+    },
+
+    /**
+     * Inicializa a página
+     */
+    async init() {
+        console.log('🔄 Inicializando página de histórico...');
+
+        this.setupEventListeners();
+        this.loadFromState();
+        await this.carregarEventos();
+
+        console.log('✅ Página de histórico inicializada');
+    },
+
+    /**
+     * Carrega estado salvo (filtro, página)
+     */
+    loadFromState() {
+        const savedFilter = KaniuState.getFilter('historico_filter');
+        const savedPage = KaniuState.getFilter('historico_page');
+
+        if (savedFilter) {
+            this.config.currentFilter = savedFilter;
+        }
+
+        if (savedPage) {
+            this.config.currentPage = savedPage;
+        }
+    },
+
+    /**
+     * Salva estado atual
+     */
+    saveToState() {
+        KaniuState.setFilter('historico_filter', this.config.currentFilter);
+        KaniuState.setFilter('historico_page', this.config.currentPage);
+    },
+
+    /**
+     * Configura event listeners
+     */
+    setupEventListeners() {
+        // Tabs de filtro
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const tab = e.currentTarget.dataset.tab;
+                this.aplicarFiltro(tab);
+            });
+        });
+
+        // Paginação
+        const prevBtn = document.getElementById('prev-page');
+        const nextBtn = document.getElementById('next-page');
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => this.prevPage());
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => this.nextPage());
+        }
+    },
+
+    /**
+     * Carrega eventos da API
+     */
+    async carregarEventos() {
+        const tbody = document.getElementById('eventos-tbody');
+
+        if (!tbody) {
+            console.error('Elemento tbody não encontrado');
+            return;
+        }
+
+        // Mostra loading
+        KaniuDOM.renderLoading(tbody, 7);
+        KaniuState.setLoading(true);
+
+        try {
+            // Tenta buscar do cache primeiro
+            const cacheKey = 'historico_eventos';
+            const cached = KaniuState.getCache(cacheKey);
+
+            if (cached) {
+                console.log('📦 Usando dados do cache');
+                this.data.todosEventos = cached;
+            } else {
+                console.log('🌐 Buscando eventos da API...');
+                this.data.todosEventos = await KaniuAPI.getEventos();
+
+                // Salva no cache (5 minutos)
+                KaniuState.setCache(cacheKey, this.data.todosEventos, 300000);
+            }
+
+            // Aplica filtro e renderiza
+            this.aplicarFiltro(this.config.currentFilter);
+
+            console.log(`✅ ${this.data.todosEventos.length} eventos carregados`);
+
+        } catch (error) {
+            console.error('❌ Erro ao carregar eventos:', error);
+            KaniuDOM.renderError(tbody, 7, error);
+        } finally {
+            KaniuState.setLoading(false);
+        }
+    },
+
+    /**
+     * Aplica filtro baseado na aba
+     * @param {string} tipo - Tipo de filtro (realizados, programados, atrasados)
+     */
+    aplicarFiltro(tipo) {
+        this.config.currentFilter = tipo;
+        this.config.currentPage = 1;
+
+        // Atualiza botões ativos
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.tab === tipo) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Atualiza título
+        const titleEl = document.getElementById('table-title');
+        if (titleEl) {
+            titleEl.textContent = this.tabTitles[tipo] || 'Eventos';
+        }
+
+        // Filtra dados
+        this.data.eventosFiltrados = this.data.todosEventos.filter(evento => {
+            if (tipo === 'realizados') {
+                return evento.concluido && !evento.atrasado;
+            } else if (tipo === 'programados') {
+                return evento.programado || (!evento.concluido && !evento.atrasado);
+            } else if (tipo === 'atrasados') {
+                return evento.atrasado;
+            }
+            return false;
+        });
+
+        // Ordena por data (mais recente primeiro)
+        this.data.eventosFiltrados.sort((a, b) => {
+            const dataA = new Date(a.data_exibicao || a.data);
+            const dataB = new Date(b.data_exibicao || b.data);
+            return dataB - dataA;
+        });
+
+        console.log(`🔍 Filtro '${tipo}': ${this.data.eventosFiltrados.length} eventos`);
+
+        // Salva estado e renderiza
+        this.saveToState();
+        this.renderizarTabela();
+    },
+
+    /**
+     * Renderiza tabela com paginação
+     */
+    renderizarTabela() {
+        const tbody = document.getElementById('eventos-tbody');
+
+        if (!tbody) return;
+
+        const totalPages = Math.ceil(
+            this.data.eventosFiltrados.length / this.config.itemsPerPage
+        );
+
+        // Atualiza informações
+        this.atualizarInfo(totalPages);
+
+        // Se não há eventos
+        if (this.data.eventosFiltrados.length === 0) {
+            KaniuDOM.renderEmptyTable(tbody, 7, 'Nenhum evento encontrado nesta categoria');
+            return;
+        }
+
+        // Calcula items da página atual
+        const startIdx = (this.config.currentPage - 1) * this.config.itemsPerPage;
+        const endIdx = startIdx + this.config.itemsPerPage;
+        const pageItems = this.data.eventosFiltrados.slice(startIdx, endIdx);
+
+        // Renderiza linhas
+        tbody.innerHTML = pageItems.map(evento => this.renderEventoRow(evento)).join('');
+    },
+
+    /**
+     * Renderiza linha da tabela para um evento
+     * @param {object} evento - Dados do evento
+     * @returns {string} HTML da linha
+     */
+    renderEventoRow(evento) {
+        const data = evento.data_exibicao || evento.data;
+        const dataFormatada = KaniuDOM.formatDate(data);
+        const icon = this.tipoIcons[evento.tipo] || 'fa-circle';
+        const statusClass = evento.atrasado ? 'status-atrasado' :
+                           evento.concluido ? 'status-concluido' :
+                           'status-programado';
+
+        return `
+            <tr class="${statusClass}">
+                <td class="date-col">${dataFormatada}</td>
+                <td class="animal-col">${evento.nome_animal || '-'}</td>
+                <td class="tipo-col">
+                    <i class="fa-solid ${icon}"></i>
+                    ${evento.tipo || '-'}
+                </td>
+                <td class="desc-col" title="${evento.descricao || '-'}">
+                    ${evento.descricao || '-'}
+                </td>
+                <td>${evento.nome_veterinario || '-'}</td>
+                <td>${evento.clinica || '-'}</td>
+                <td class="actions-col">
+                    <button
+                        class="btn-action"
+                        title="Ver detalhes"
+                        onclick="HistoricoPage.verDetalhes(${evento.registro_id})">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </td>
+            </tr>
+        `;
+    },
+
+    /**
+     * Atualiza informações da tabela (contadores, paginação)
+     * @param {number} totalPages - Total de páginas
+     */
+    atualizarInfo(totalPages) {
+        // Contador de registros
+        const countEl = document.getElementById('records-count');
+        if (countEl) {
+            const count = this.data.eventosFiltrados.length;
+            countEl.textContent = `${count} registro${count !== 1 ? 's' : ''}`;
+        }
+
+        // Paginação
+        const currentPageEl = document.getElementById('current-page');
+        const totalPagesEl = document.getElementById('total-pages');
+        const prevBtn = document.getElementById('prev-page');
+        const nextBtn = document.getElementById('next-page');
+
+        if (currentPageEl) currentPageEl.textContent = this.config.currentPage;
+        if (totalPagesEl) totalPagesEl.textContent = totalPages || 1;
+        if (prevBtn) prevBtn.disabled = this.config.currentPage <= 1;
+        if (nextBtn) nextBtn.disabled = this.config.currentPage >= totalPages;
+    },
+
+    /**
+     * Vai para página anterior
+     */
+    prevPage() {
+        if (this.config.currentPage > 1) {
+            this.config.currentPage--;
+            this.saveToState();
+            this.renderizarTabela();
+            KaniuDOM.scrollTo('.table-card');
+        }
+    },
+
+    /**
+     * Vai para próxima página
+     */
+    nextPage() {
+        const totalPages = Math.ceil(
+            this.data.eventosFiltrados.length / this.config.itemsPerPage
+        );
+
+        if (this.config.currentPage < totalPages) {
+            this.config.currentPage++;
+            this.saveToState();
+            this.renderizarTabela();
+            KaniuDOM.scrollTo('.table-card');
+        }
+    },
+
+    /**
+     * Mostra detalhes de um evento
+     * @param {number} registroId - ID do registro
+     */
+    verDetalhes(registroId) {
+        console.log('Ver detalhes do evento:', registroId);
+
+        // TODO: Implementar modal de detalhes
+        KaniuDOM.showToast(`Detalhes do evento #${registroId}`, 'info');
+    },
+
+    /**
+     * Recarrega eventos (força busca da API)
+     */
+    async reload() {
+        // Limpa cache
+        KaniuState.clearCache('historico_eventos');
+
+        // Recarrega
+        await this.carregarEventos();
+
+        KaniuDOM.showToast('Dados atualizados', 'success');
+    }
+};
+
+// Expõe globalmente para uso em onclick
+window.HistoricoPage = HistoricoPage;
+
+// Inicializa quando DOM estiver pronto
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => HistoricoPage.init());
+} else {
+    HistoricoPage.init();
+}
+
+console.log('✅ Script da página de histórico carregado');
+</script>
+
+
+  <!-- ===== SCRIPT DA SIDEBAR ===== -->
+  
+    <script>
+      const sidebar = document.getElementById('sidebar');
+      const toggleBtn = document.getElementById('sidebar-toggle');
+      const mainContent = document.querySelector('.main-with-sidebar');
+    
+      toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+        mainContent.classList.toggle('expanded');
+      });
+    </script>
+
+</body>
+
+</html>
