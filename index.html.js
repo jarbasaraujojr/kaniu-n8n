@@ -64,19 +64,20 @@ const html = `
     ${cssSidebar}
     ${cssUtilities}
 
-    <!-- ===== CSS DA NAVBAR (ÁREA DE CONTEÚDO) ===== -->
+    <!-- ===== CSS DA NAVBAR (FIXA NO TOPO) ===== -->
     <style>
-    /* Navbar no topo da área de conteúdo - mesma altura do header da sidebar */
+    /* Navbar fixa no topo - ocupa toda largura exceto sidebar */
     .top-navbar {
-        position: sticky;
+        position: fixed;
         top: 0;
+        left: 240px; /* Largura da sidebar */
+        right: 0;
         height: 57px; /* Altura do header da sidebar: 12px + 32px + 12px + 1px */
         background: var(--card-background);
         border-bottom: 1px solid var(--border-color);
         display: flex;
         align-items: center;
         padding: 0 1.5rem;
-        margin: 0 -1.5rem; /* Compensa o padding do main para ocupar largura total */
         z-index: 100;
     }
 
@@ -88,9 +89,14 @@ const html = `
         gap: 1rem;
     }
 
+    /* Ajustar main para ter espaçamento no topo (compensar navbar fixa) */
+    .main-with-sidebar main {
+        padding-top: 57px; /* Mesma altura da navbar */
+    }
+
     /* Ajustar content-grid para ter espaçamento correto */
     .content-grid {
-        padding-top: 0; /* Navbar já está no topo */
+        padding-top: 0;
     }
     </style>
 
