@@ -8,7 +8,7 @@
 const animals = $input.first().json.animals;
 const constants = $('Constants').item.json;
 const vars = $('Vars').first().json;
-const sidebar_html = $('Sidebar Html').first().json;
+const sidebar_html = $('Sidebar Html').first().json.html;
 const sidebar_script = $('Sidebar Script').first().json.script;
 
 // ===== IMPORTA MÓDULOS CSS GLOBAIS =====
