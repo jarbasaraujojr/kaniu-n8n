@@ -282,7 +282,7 @@ tbody tr:hover {
     top: 0;
     left: 240px; /* Largura da sidebar */
     right: 0;
-    height: 57px; /* Altura do header da sidebar: 12px + 32px + 12px + 1px */
+    height: 56px; /* 56px + 1px border = 57px total (igual ao sidebar-header) */
     background: var(--card-background);
     border-bottom: 1px solid var(--border-color);
     display: flex;
