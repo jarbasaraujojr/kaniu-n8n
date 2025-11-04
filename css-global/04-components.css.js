@@ -274,6 +274,42 @@ tbody tr:hover {
 }
 
 /* ==========================================================================
+   NAVBAR FIXA (TOP)
+   ========================================================================== */
+/* Navbar fixa no topo - ocupa toda largura exceto sidebar */
+.top-navbar {
+    position: fixed;
+    top: 0;
+    left: 240px; /* Largura da sidebar */
+    right: 0;
+    height: 57px; /* Altura do header da sidebar: 12px + 32px + 12px + 1px */
+    background: var(--card-background);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    z-index: 100;
+}
+
+/* Conteúdo da navbar */
+.top-navbar-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Ajustar main para ter espaçamento no topo (compensar navbar fixa) */
+.main-with-sidebar main {
+    padding-top: 57px; /* Mesma altura da navbar */
+}
+
+/* Ajustar content-grid para ter espaçamento correto */
+.content-grid {
+    padding-top: 0;
+}
+
+/* ==========================================================================
    POP-UPS / MODALS
    ========================================================================== */
 .pop-up-menu,
