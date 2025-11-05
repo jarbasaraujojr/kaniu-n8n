@@ -120,7 +120,7 @@ const css = `
 }
 
 .eventos-table tbody tr:hover {
-  background: rgba(90, 93, 127, 0.03);
+  background: var(--background-soft);
 }
 
 /* Colunas específicas */
@@ -353,31 +353,31 @@ const css = `
 @media (prefers-color-scheme: dark) {
   .table-card,
   .filters-bar {
-    background: var(--card-background, #1E293B);
-    border-color: var(--border-color, #334155);
+    background: var(--card-background);
+    border-color: var(--border-color);
   }
-  
+
   .table-header {
-    background: var(--background-soft, #0F172A);
-    border-bottom-color: var(--border-color, #334155);
+    background: var(--background-soft);
+    border-bottom-color: var(--border-color);
   }
-  
+
   .eventos-table thead {
-    background: var(--background-soft, #0F172A);
+    background: var(--background-soft);
   }
-  
+
   .eventos-table th {
-    color: var(--text-light, #94A3B8);
-    border-bottom-color: var(--border-color, #334155);
+    color: var(--text-light);
+    border-bottom-color: var(--border-color);
   }
-  
+
   .eventos-table td {
-    border-bottom-color: var(--border-color, #334155);
-    color: var(--text-dark, #CBD5E1);
+    border-bottom-color: var(--border-color);
+    color: var(--text-dark);
   }
-  
+
   .eventos-table tbody tr:hover {
-    background: var(--background-light, #334155);
+    background: var(--background-light);
   }
 }
 </style>

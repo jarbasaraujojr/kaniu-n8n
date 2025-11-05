@@ -1,57 +1,8 @@
 const style = `
 <style>
 /* ==========================================================================
-// 1. IMPORTAÇÕES E FONTES
-// ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@font-face {
-    font-family: 'GoodDog';
-    src: url('https://viralatinhaz.uzd6db.easypanel.host/assets/fonts/GoodDog.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/* ==========================================================================
-// 2. VARIÁVEIS CSS (ROOT)
-// ========================================================================== */
-:root {
-    /* Cores */
-    --primary-color: #5A5D7F;
-    --primary-background: #5A5D7FA0;
-    --background-light: #EEF2F9;
-    --background-soft: #F5F6FB;
-    --card-background: #FFFFFF;
-    --warning-color: #C62828;
-    --text-dark: #372D1F;
-    --text-light: #6B7280;
-    --text-faded: #A0A6B5;
-    --border-color: #E5E7F2;
-
-    --radius-lg: 18px;
-    --radius-md: 12px;
-    --radius-sm: 6px;
-
-    --primary-soft: #5A5D7F10;
-    --primary-strong: #5A5D7FAA;
-
-    /* Botões */
-    --button-padding: 6px 12px;
-    --button-font-size: 0.85rem;
-    --button-border-radius: 6px;
-
-    /* Offsets / sticky */
-    --tab-toolbar-h: 44px;
-    --tab-content-pt: 20px;
-    --tab-header-offset: var(--tab-content-pt);
-}
-
-/* Ajuste de Altura da Toolbar para Telas Menores */
-@media (max-width: 768px) {
-    :root { --tab-toolbar-h: 52px; }
-}
-
-/* ==========================================================================
-// 3. ESTILOS GERAIS DE LAYOUT E ESTRUTURA
+// ESTILOS ESPECÍFICOS DA PÁGINA DE LISTAGEM
+// Variáveis CSS e estilos globais vêm do css-global
 // ========================================================================== */
 body {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -371,7 +322,7 @@ tbody tr {
     border-bottom: 1px solid var(--border-color);
     transition: background 120ms ease;
 }
-tbody tr:hover { background: rgba(90, 93, 127, 0.03); }
+tbody tr:hover { background: var(--background-soft); }
 
 .table-col-long { min-width: 220px; }
 
@@ -667,7 +618,7 @@ button:focus { outline: none !important; box-shadow: none !important; }
     color: var(--primary-color);
 }
 .tab-table td { color: var(--text-light); }
-.tab-table tbody tr:hover { background-color: rgba(90, 93, 127, 0.03); }
+.tab-table tbody tr:hover { background-color: var(--background-soft); }
 
 /* Coluna de Ações */
 .action-cell {
@@ -1411,6 +1362,44 @@ th.table-col-long, td.table-col-long {
   margin-top: 4rem;        /* 🔹 afastamento do topo */
   line-height: 1.5;
   background: transparent; /* mantém fundo neutro */
+}
+
+/* ===== MODO ESCURO ===== */
+@media (prefers-color-scheme: dark) {
+  .card,
+  .table-card {
+    background: var(--card-background);
+    border-color: var(--border-color);
+  }
+
+  .card header,
+  .table-card header {
+    background: var(--background-soft);
+    border-bottom-color: var(--border-color);
+  }
+
+  .tab-table thead,
+  table thead {
+    background: var(--background-soft);
+  }
+
+  .tab-table thead th,
+  table th {
+    background: var(--background-soft);
+    color: var(--text-light);
+    border-bottom-color: var(--border-color);
+  }
+
+  .tab-table td,
+  table td {
+    border-bottom-color: var(--border-color);
+    color: var(--text-dark);
+  }
+
+  tbody tr:hover,
+  .tab-table tbody tr:hover {
+    background: var(--background-light);
+  }
 }
 </style>
 `;

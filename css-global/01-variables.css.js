@@ -103,7 +103,7 @@ const css = `
     }
 }
 
-/* ===== MODO ESCURO (preparado para futuro) ===== */
+/* ===== MODO ESCURO (ativo - detecta tema do OS/navegador) ===== */
 @media (prefers-color-scheme: dark) {
     :root {
         --background-light: #0F172A;

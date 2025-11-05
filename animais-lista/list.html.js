@@ -8,9 +8,19 @@
 const animals = $input.first().json.animals;
 const constants = $('Constants').item.json;
 const vars = $('Vars').first().json;
-const style = $('List Style').first().json.style;
 const sidebar_html = $('Sidebar Html').first().json.html;
 const sidebar_script = $('Sidebar Script').first().json.script;
+
+// ===== IMPORTA MÓDULOS CSS GLOBAIS =====
+const cssVariables = $('CSS Variables').first().json.css;
+const cssFontsBase = $('CSS Fonts Base').first().json.css;
+const cssLayout = $('CSS Layout').first().json.css;
+const cssComponents = $('CSS Components').first().json.css;
+const cssSidebar = $('CSS Sidebar').first().json.css;
+const cssUtilities = $('CSS Utilities').first().json.css;
+
+// ===== IMPORTA CSS DA PÁGINA =====
+const style = $('List Style').first().json.style;
 
 // ---------- VARIÁVEIS BASE ----------
 const img_logo = constants.img_logo;
@@ -99,12 +109,22 @@ const html = `
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="${fav_icon}" />
   <title>Animais para Adoção</title>
-  <!------------------------------------- Carregar fontes locais ------------------------------------->
+
+  <!-- ===== FONT AWESOME ===== -->
   <link href="https://viralatinhaz.uzd6db.easypanel.host/assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
   <link href="https://viralatinhaz.uzd6db.easypanel.host/assets/fontawesome/css/solid.css" rel="stylesheet" />
-</head>
 
-${style}
+  <!-- ===== CSS GLOBAL (MODULAR) ===== -->
+  ${cssVariables}
+  ${cssFontsBase}
+  ${cssLayout}
+  ${cssComponents}
+  ${cssSidebar}
+  ${cssUtilities}
+
+  <!-- ===== CSS DA PÁGINA ===== -->
+  ${style}
+</head>
 
 <body>
 
@@ -323,4 +343,8 @@ ${style}
 `;
 
 // ---------- SAÍDA ----------
-return [{ json: { html } }];
+return [{ 
+    json: { 
+      html,
+      animals
+    } }];

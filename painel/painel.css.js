@@ -6,6 +6,9 @@
 
 const css = `
 <style>
+/* ===== ESTILOS ESPECÍFICOS DO PAINEL ===== */
+/* Variáveis CSS vêm do css-global/01-variables.css.js */
+
 /* ===== SOBREPOSIÇÕES ESPECÍFICAS DO PAINEL ===== */
 /* Garante que o main do painel tenha comportamento correto */
 body.painel-page main {
@@ -257,31 +260,31 @@ body.painel-page main {
   min-height: 0;
 }
 
-/* ===== MODO ESCURO (se aplicado) ===== */
+/* ===== MODO ESCURO ===== */
 @media (prefers-color-scheme: dark) {
   .dashboard-card {
-    background: var(--card-background, #1E293B);
-    border-color: var(--border-color, #334155);
+    background: var(--card-background);
+    border-color: var(--border-color);
   }
-  
+
   .dashboard-card header {
-    background: var(--background-soft, #0F172A);
-    border-bottom-color: var(--border-color, #334155);
-    color: var(--text-dark, #E2E8F0);
+    background: var(--background-soft);
+    border-bottom-color: var(--border-color);
+    color: var(--text-dark);
   }
-  
+
   .dashboard-card th {
-    background: var(--background-soft, #0F172A);
-    color: var(--text-light, #94A3B8);
+    background: var(--background-soft);
+    color: var(--text-light);
   }
-  
+
   .dashboard-card td {
-    border-bottom-color: var(--border-color, #334155);
-    color: var(--text-dark, #CBD5E1);
+    border-bottom-color: var(--border-color);
+    color: var(--text-dark);
   }
-  
+
   .dashboard-card tbody tr:hover {
-    background: var(--background-light, #334155);
+    background: var(--background-light);
   }
 }
 </style>
